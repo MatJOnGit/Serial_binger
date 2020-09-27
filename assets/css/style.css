@@ -1,0 +1,386 @@
+/* Fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
+* {
+    color: hsla(0 , 0%, 100%, 1);
+    font-family: 'PT Sans', 'Open Sans';
+}
+
+input {
+    font-family: 'Arvo', sans-serif;
+}
+
+/* Addition to normalize.css */
+
+h1, h2, h3, ul, p {
+    margin: 0;
+    padding: 0;
+}
+
+button p {
+    font-size: .9em;
+}
+ 
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+
+/* Header */
+
+header {
+    width: 100%;
+    height: 50px;
+    background-color: hsla(232, 53%, 25%, 1);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+}
+
+header div {
+    margin: 10px 15px;
+}
+
+header img {
+    margin: 0 15px;
+    width: 40px;
+    height: 40px;
+}
+
+header input {
+    width: 70%;
+}
+
+.fa-search {
+    color: hsla(0 , 0%, 100%, 1);
+}
+
+/* Image layer */
+
+.content_intro {
+    width: 100%;
+    height: 350px;
+    position: relative;
+}
+
+.show_layer {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.show_layer::before,
+.show_layer::after {
+    content: "";
+    width: 100%;
+    height: 20px;
+    position: absolute;
+}
+
+.show_layer::before {
+    top: 0;
+    left: 0;
+    background: linear-gradient(
+        hsla(232, 53%, 25%, 1) 0%,
+        hsla(232, 53%, 25%, 0.6) 40%,
+        transparent 100%
+    );
+}
+
+.show_layer::after {
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(
+        transparent 0%,
+        hsla(232, 53%, 25%, 0.6) 60%,
+        hsla(232, 53%, 25%, 1) 100%
+    );
+}
+
+/* Page content */
+
+.main-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+    /* Features */
+
+    .features {
+        padding: 30px 10%;
+        background-color: hsla(232, 53%, 25%, 1);
+    }
+
+    .features > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .features > div[class*="-card"] {
+        margin: auto;
+    }
+
+    .rounded {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 20px;
+        border: 1px white solid;
+        border-radius: 50%;
+        background-size: cover;
+    }
+
+    .catalogue-card .rounded {
+        background-image: url("./../images/vignets/compare.jpg");
+    }
+
+    .suggestions-card .rounded {
+        background-image: url("./../images/vignets/advice.jpg");
+    }
+
+    .binging-plan-card .rounded {
+        background-image: url("./../images/vignets/plan.jpg");
+    }
+
+    h2 {
+        margin-bottom: 10px;
+        font-family: 'Arvo', sans-serif;
+    }
+
+    hr {
+        width: 40%;
+        box-shadow: 0 1px hsla(0 , 0%, 100%, .2);
+        margin: 30px auto;
+    }
+
+    /* Registration box */
+
+    .registration-box {
+        margin: 80px auto 0;
+    }
+
+    .registration-box a {
+        text-decoration: none;
+        cursor: pointer;
+        margin: 10px auto 50px;
+        padding: 7px 15px;
+        border: 1px solid white;
+        background-color: hsla(333, 58%, 30%, 1);
+        border-radius: 8px;
+        box-shadow: 2px 2px black;
+    }
+
+    .fa-user-circle {
+        margin-right: 10px;
+    }
+
+    /* show details */
+
+    .show-card {
+        padding: 30px 10%;
+        background-color: hsla(232, 53%, 25%, 1);
+    }
+
+    .show-card > div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+        /* show header */
+
+        .show-header {
+            margin-bottom: 15px;
+        }
+
+        .show-header p {
+            margin-top: 14px;
+            font-style: italic;
+        }
+
+        /* show actions */
+
+        .show-user-actions > div,
+        .show-user-actions > button {
+            margin: 20px 0;
+        }
+
+        #trailer-player {
+            display: none;
+            width: 100%;
+        }
+
+        iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+        }
+
+        .preshow-actions {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .preshow-actions button,
+        .show-overview-button {
+            color: white;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid white;
+        }
+
+        #play-trailer-button {
+            background-color: hsla(333, 58%, 30%, 1);
+        }
+
+        .add-to-watchlist-button,
+        .show-overview-button {
+            background-color: hsla(205, 54%, 51%, 1);
+        }
+
+        .show-overview-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .netflix-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50% !important;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            background-color: black;
+            color: red !important;
+        }
+
+        .show-info h3 {
+            margin-top: 15px;
+        }
+
+        /* Casting */
+
+        .show-casting {
+            margin-bottom: 30px;
+        }
+
+        .show-casting ul {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        .show-casting li {
+            list-style: none;
+            width: 110px;
+            margin: 0 5px;
+        }
+
+        .show-casting li img {
+            width: 100%;
+        }
+
+        .actor-card div {
+            width: 110px;
+            white-space: normal;
+        }
+
+        .actor-card p {
+            overflow-wrap: break-word;
+        }
+
+        .actor-card p:last-child {
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+
+
+    
+
+        
+
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Footer */
+
+footer {
+    width: 100%;
+    background-color: hsla(0, 100%, 0%, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    position: relative;
+}
+
+footer::before{
+    content: "";
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(
+        transparent 0%,
+        hsla(0, 100%, 0%, .6) 60%,
+        hsla(0, 100%, 0%, 1) 100%
+    );
+    position: absolute;
+    top: -30px;
+    left: 0;
+}
+
+footer ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100px;
+    margin: 10px auto;
+}
+
+footer li {
+    margin: 0 12px;
+}
+
+footer i {
+    color: hsla(333, 58%, 30%, 1);
+}
+
+footer p {
+    margin-bottom: 10px;
+    font-size: .8em;
+}
