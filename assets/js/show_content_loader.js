@@ -1,14 +1,16 @@
-function displayShowSpecifics(show) {
-    displayShowLayer(show)
-    displayShowName(show)
-    displayShowTrailer(show)
-    displayShowLength(show)
-    displayShowGenre(show)
-    displayShowType(show)
-    displayShowDirector(show)
+function renderShowSpecifics(show) {
+    renderShowLayer(show)
+    renderShowCasting(show)
+    renderShowName(show)
+    renderShowTrailer(show)
+    renderShowLength(show)
+    renderShowGenre(show)
+    renderShowType(show)
+    renderShowDirector(show)
+    renderShowSynopsis(show)
 }
 
-function displayShowName(show) {
+function renderShowName(show) {
     var titleElt = document.getElementsByTagName("h1")[0]
     var firstAiringDate = ""
 
@@ -26,7 +28,7 @@ function displayShowName(show) {
     }
 }
 
-function displayShowTrailer(show) {
+function renderShowTrailer(show) {
     var trailerBox = document.getElementById('trailer-player')
     var trailerFrame = document.createElement('iframe')
     trailerFrame.src = "https://www.youtube.com/embed/" + show.videos.results[0].key
@@ -34,11 +36,13 @@ function displayShowTrailer(show) {
     trailerBox.appendChild(trailerFrame)
 }
 
-function displayShowLayer(show) {
+function renderShowLayer(show) {
     var backgroundBox = document.getElementsByClassName("show_layer")[0]
     var baseUrl = 'https://image.tmdb.org/t/p/w500'
     backgroundBox.style.backgroundImage = "url('" + baseUrl + show.backdrop_path + "')"
+}
 
+function renderShowCasting(show) {
     var castingList = document.getElementsByClassName("casting-list")[0]
 
     // set max number of actor cards
@@ -46,7 +50,7 @@ function displayShowLayer(show) {
 
     show.credits.cast.forEach((card, index) => {
 
-        // display the 10 first actor card if they have an profile picture
+        // render the 10 first actor card if they have an profile picture
         if ((card.profile_path !== null) && (index < maxDisplayedCards)) {
             var actorCard = document.createElement('li')
             var actorImg = document.createElement('img')
@@ -64,8 +68,8 @@ function displayShowLayer(show) {
     })
 }
 
-// display a show length depending on the show type
-function displayShowLength(show) {
+// render a show length depending on the show type
+function renderShowLength(show) {
     var showLengthBox = document.getElementsByClassName('show_length')[0]
     var showLengthTitle = showLengthBox.getElementsByTagName('h3')[0]
     var showLengthValue = showLengthBox.getElementsByTagName('p')[0]
@@ -81,7 +85,7 @@ function displayShowLength(show) {
     }
 }
 
-function displayShowGenre(show) {
+function renderShowGenre(show) {
     var showGenreBox = document.getElementsByClassName('show_genre')[0]
     var showGenreText = showGenreBox.getElementsByTagName('p')[0]
     
@@ -97,7 +101,7 @@ function displayShowGenre(show) {
     showGenreText.textContent = showGenreValues
 }
 
-function displayShowType(show) {
+function renderShowType(show) {
     var broadcasterBlock = document.getElementsByClassName('broadcaster-block')[0]
     var broadcasterIntro = broadcasterBlock.getElementsByTagName('p')[0]
     var showRatingButton = document.getElementsByClassName('show-overview-button')[0]
@@ -115,7 +119,7 @@ function displayShowType(show) {
     }
 }
 
-function displayShowDirector(show) {
+function renderShowDirector(show) {
     var showDirectorBox = document.getElementsByClassName('show_director')[0]
     var showDirectorTitle = showDirectorBox.getElementsByTagName('h3')[0]
     var showDirectorText = document.createElement('p')
@@ -152,6 +156,17 @@ function displayShowDirector(show) {
     showDirectorBox.appendChild(showDirectorText)
 }
 
+function renderShowSynopsis(show) {
+    var showHeader = document.getElementsByClassName('show-header')[0]
+    var synopsisText = document.createElement('p')
+    var synopsisValue = show.overview
+
+    synopsisValue = synopsisValue.replaceAll("\n\n", '</p><p>')
+    
+    showHeader.appendChild(synopsisText)
+    synopsisText.innerHTML = "<p>" + synopsisValue + "</p>"
+}
+
 // "Matrix" movie
 show_id = 603
 show_type = 'movie'
@@ -164,6 +179,6 @@ window.addEventListener('load', () => {
     // fetch les data de la série Lucifer (id 63174)
     fetch("https://api.themoviedb.org/3/" + show_type + "/" + show_id + "?api_key=9681493c16e2c16cba85aee9de76d451&language=fr-FR&append_to_response=credits,videos")
     .then(response => response.json())
-    .then(showData => displayShowSpecifics(showData))
+    .then(showData => renderShowSpecifics(showData))
     .catch(error => console.log(error));
 })

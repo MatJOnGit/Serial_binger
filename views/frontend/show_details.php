@@ -2,15 +2,6 @@
         <div class="show-card">
             <div class="show-header">
                 <h1></h1>
-                <p>
-                    Lassé et mécontent de sa position de seigneur des Enfers, Lucifer Morningstar démissionne et abandonne le trône de son royaume pour la bouillonnante et non moins impure Los Angeles.
-                </p>
-                <p>
-                    Dans la Cité des anges, l'ex maître diabolique est le patron d'un nightclub branché : le Lux. Quand une star de la Pop est sauvagement assassinée sous ses yeux, il décide de partir à la recherche du coupable et croise sur sa route Chloé Decker, un inspecteur de Police qui résiste à ses charmes et lui met constamment des bâtons dans les roues.
-                </p>
-                <p>
-                    Alors que l'improbable duo s'entraide pour venir à bout de l'enquête, l'ange Amenadiel est envoyé à Los Angeles pour tenter de convaincre Lucifer de regagner son royaume. L'ancien seigneur des Enfers cèdera-t-il aux sirènes du Mal qui l'appellent, ou se laissera-t-il tenter par le Bien, vers lequel l'inspectrice Chloé Decker semble peu à peu l'amener ?
-                </p>
             </div>
 
             <div class="show-user-actions">
@@ -42,7 +33,7 @@
             <div class="show-info">
                 <h2>A propos </h2>
                 <div class="show_genre">
-                    <h3>Genre :</h3>
+                    <h3>Genres :</h3>
                     <p></p>
                 </div>
 
