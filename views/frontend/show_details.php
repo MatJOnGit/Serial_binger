@@ -29,35 +29,30 @@
                 </div>
 
                 <div class="broadcaster-block">
-                    <p>Voir la série sur :</p>
+                    <p>Voir </p>
                     <button class="netflix-button">Netflix</button>
                 </div>
 
                 <!-- sur mobile, ce bouton fera pop un formulaire au milieu de l'écran -->
-                <button class="show-overview-button">Noter cette série</button>
+                <button class="show-overview-button">Noter </button>
             </div>
 
             <hr>
 
             <div class="show-info">
-                <h2>A propos de la série :</h2>
+                <h2>A propos </h2>
                 <div class="show_genre">
                     <h3>Genre :</h3>
-                    <p>Crime, Science-Fiction & Fantastique</p>
+                    <p></p>
                 </div>
 
                 <div class="show_length">
-                    <h3>Nombre de saison :</h3>
-                    <p>5</p>
+                    <h3></h3>
+                    <p></p>
                 </div>
                 
-                <div class="show_creator">
+                <div class="show_director">
                     <h3>Créateur :</h3>
-                </div>
-
-                <div class="show_first_airing">
-                    <h3>Première diffusion :</h3>
-                    <p>2016</p>
                 </div>
             </div>
 

@@ -2,42 +2,52 @@ function displayShowSpecifics(show) {
     displayShowLayer(show)
     displayShowName(show)
     displayShowTrailer(show)
+    displayShowLength(show)
+    displayShowGenre(show)
+    displayShowType(show)
+    displayShowDirector(show)
 }
 
-// Display show's title
 function displayShowName(show) {
     var titleElt = document.getElementsByTagName("h1")[0]
+    var firstAiringDate = ""
+
     if (show_type === 'movie') {
-        titleElt.textContent = show.title
+        firstAiringDate = show.release_date.split('-')[0]
+    } else {
+        firstAiringDate = show.first_air_date.split('-')[0]
+    }
+
+    if (show_type === 'movie') {
+        titleElt.textContent = show.title + ' (' + firstAiringDate + ')'
     }
     else {
-        titleElt.textContent = show.name
+        titleElt.textContent = show.name + ' (' + firstAiringDate + ')'
     }
 }
 
-// Display show's youtube trailer
 function displayShowTrailer(show) {
     var trailerBox = document.getElementById('trailer-player')
     var trailerFrame = document.createElement('iframe')
     trailerFrame.src = "https://www.youtube.com/embed/" + show.videos.results[0].key
 
     trailerBox.appendChild(trailerFrame)
-
-    // Wanna see genres
-    // console.log(show.genres[0].name)
 }
 
-// Display show's layer 
 function displayShowLayer(show) {
-    var backgroundElt = document.getElementsByClassName("show_layer")[0]
+    var backgroundBox = document.getElementsByClassName("show_layer")[0]
     var baseUrl = 'https://image.tmdb.org/t/p/w500'
-    backgroundElt.style.backgroundImage = "url('" + baseUrl + show.backdrop_path + "')"
+    backgroundBox.style.backgroundImage = "url('" + baseUrl + show.backdrop_path + "')"
 
-    // Set casting cards
     var castingList = document.getElementsByClassName("casting-list")[0]
 
-    show.credits.cast.forEach((card) => {
-        if (card.profile_path !== null) {
+    // set max number of actor cards
+    var maxDisplayedCards = 10
+
+    show.credits.cast.forEach((card, index) => {
+
+        // display the 10 first actor card if they have an profile picture
+        if ((card.profile_path !== null) && (index < maxDisplayedCards)) {
             var actorCard = document.createElement('li')
             var actorImg = document.createElement('img')
             var cardTextBlock = document.createElement('div')
@@ -54,19 +64,101 @@ function displayShowLayer(show) {
     })
 }
 
-// Set creator name
-    // console.log(show.created_by[0].name)
-    // var showCreatorBox = document.getElementsByClassName("show_creator")
-    // var creatorText = document.createElement('p')
-    // showCreatorBox.appendChild(creatorText)
+// display a show length depending on the show type
+function displayShowLength(show) {
+    var showLengthBox = document.getElementsByClassName('show_length')[0]
+    var showLengthTitle = showLengthBox.getElementsByTagName('h3')[0]
+    var showLengthValue = showLengthBox.getElementsByTagName('p')[0]
 
-// "Le seigneur des anneaux" movie
-// show_id = 122
-// show_type = 'movie'
+    if (show_type === 'movie') {
+        showLengthTitle.textContent = 'Durée du film :'
+        var showMinutes = show.runtime % 60
+        var showHours = (show.runtime - showMinutes) / 60
+        showLengthValue.textContent = showHours + 'h' + showMinutes
+    } else {
+        showLengthTitle.textContent = 'Nombre de saison :'
+        showLengthValue.textContent = show.number_of_seasons 
+    }
+}
+
+function displayShowGenre(show) {
+    var showGenreBox = document.getElementsByClassName('show_genre')[0]
+    var showGenreText = showGenreBox.getElementsByTagName('p')[0]
+    
+    var showGenreValues = ""
+    
+    show.genres.forEach((genre, index) => {
+        if (index > 0) {
+            showGenreValues += ', ' + genre.name
+        } else {
+            showGenreValues = genre.name
+        }
+    })
+    showGenreText.textContent = showGenreValues
+}
+
+function displayShowType(show) {
+    var broadcasterBlock = document.getElementsByClassName('broadcaster-block')[0]
+    var broadcasterIntro = broadcasterBlock.getElementsByTagName('p')[0]
+    var showRatingButton = document.getElementsByClassName('show-overview-button')[0]
+    var showInfoBox = document.getElementsByClassName('show-info')[0]
+    var showInfoTitle = showInfoBox.getElementsByTagName('h2')[0]
+
+    if (show_type === 'movie') {
+        broadcasterIntro.textContent += 'le film sur :'
+        showRatingButton.textContent += 'ce film'
+        showInfoTitle.textContent += 'du film :'
+    } else {
+        broadcasterIntro.textContent += 'la série sur :'
+        showRatingButton.textContent += 'cette série'
+        showInfoTitle.textContent += 'de la série :'
+    }
+}
+
+function displayShowDirector(show) {
+    var showDirectorBox = document.getElementsByClassName('show_director')[0]
+    var showDirectorTitle = showDirectorBox.getElementsByTagName('h3')[0]
+    var showDirectorText = document.createElement('p')
+    var showDirectorName = ''
+    var showDirectorCounter = 0
+
+    if (show_type === 'movie') {
+        showDirectorTitle.textContent = 'Réalisateur'
+
+        // Search for all directors
+        show.credits.crew.forEach((crew) => {
+            if ((crew.department === 'Directing') && (crew.job === 'Director')) {
+                if (showDirectorName === '') {
+                    showDirectorName = crew.name
+                } else {
+                    showDirectorName += ', ' + crew.name
+                }
+                showDirectorCounter ++
+            }
+        })
+
+        // Deal with multiple directors case
+        if (showDirectorCounter >= 2) {
+            showDirectorTitle.textContent += 's :'
+        } else {
+            showDirectorTitle.textContent += ' :'
+        }
+    } else {
+        showDirectorTitle.textContent = 'Créateur :'
+        showDirectorName = show.created_by[0].name
+    }
+
+    showDirectorText.textContent = showDirectorName
+    showDirectorBox.appendChild(showDirectorText)
+}
+
+// "Matrix" movie
+show_id = 603
+show_type = 'movie'
 
 // "Lucifer" tv show
-show_id = 63174
-show_type = 'tv'
+// show_id = 63174
+// show_type = 'tv'
 
 window.addEventListener('load', () => {
     // fetch les data de la série Lucifer (id 63174)
