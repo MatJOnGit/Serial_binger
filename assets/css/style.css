@@ -299,22 +299,45 @@ header input {
             overflow-y: hidden;
         }
 
-        .show-casting li {
+        .actor-card > div:first-child {
             list-style: none;
             width: 110px;
             margin: 0 5px;
+            position: relative;
         }
+
+        .actor-card > div:first-child,
+        .actor-card > div:first-child img,
+        .actor-card > div:first-child a {
+            border-radius: 8px;
+        } 
 
         .show-casting li img {
-            width: 100%;
+            width: 110px;
         }
 
-        .actor-card div {
-            width: 110px;
+        .actor-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            display: flex;
+            text-decoration: none;
+            justify-content: flex-end;
+        }
+
+        .fa-link {
+            margin: 5px;
+        }
+
+        .actor-card div:last-child {
             white-space: normal;
         }
 
-        .actor-card p {
+        .actor-card p,
+        .actor-card a {
             overflow-wrap: break-word;
         }
 
@@ -322,6 +345,8 @@ header input {
             margin-top: 5px;
             font-style: italic;
         }
+
+        
 
 
 

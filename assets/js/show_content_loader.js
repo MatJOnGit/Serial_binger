@@ -72,17 +72,34 @@ function renderShowCasting(show) {
         // render the 10 first actor card if they have an profile picture
         if ((card.profile_path !== null) && (index < maxDisplayedCards)) {
             var actorCard = document.createElement('li')
+            var actorImgContainer = document.createElement('div')
             var actorImg = document.createElement('img')
-            var cardTextBlock = document.createElement('div')
+            var actorLink = document.createElement('a')
+            var actorLinkIcon = document.createElement('i')
+            var cardTextBox = document.createElement('div')
+            var actorRole = document.createElement('p')
+            var actorName = document.createElement('p')
 
-            actorCard.setAttribute('class', 'actor-card')
+            actorCard.className = 'actor-card'
             actorImg.src = "https://image.tmdb.org/t/p/w500" + card.profile_path
             actorImg.alt = card.name
+            actorLinkIcon.className = 'fas fa-link'
+            actorRole.textContent = card.character
+            actorName.textContent = card.name
+            actorLink.href = 'index.php?action=getActorInfo&amp;id=' + card.id
+            actorLink.className = 'actor-link'
+            
+            console.log(actorLink)
+            console.log(actorCard)
 
             castingList.appendChild(actorCard)
-            actorCard.appendChild(actorImg)
-            actorCard.appendChild(cardTextBlock)
-            cardTextBlock.innerHTML = '<p>' + card.character + '</p><p>' + card.name + '</p>'
+            actorCard.appendChild(actorImgContainer)
+            actorImgContainer.appendChild(actorImg)
+            actorImgContainer.appendChild(actorLink)
+            actorLink.appendChild(actorLinkIcon)
+            actorCard.appendChild(cardTextBox)
+            cardTextBox.appendChild(actorRole)
+            cardTextBox.appendChild(actorName)
         }
     })
 }
