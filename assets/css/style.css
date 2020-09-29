@@ -219,7 +219,7 @@ header input {
             margin: 20px 0;
         }
 
-        #trailer-player {
+        .trailer-player {
             display: none;
             width: 100%;
         }
@@ -245,11 +245,19 @@ header input {
             border: 1px solid white;
         }
 
-        #play-trailer-button {
+        .play-trailer-button {
             background-color: hsla(333, 58%, 30%, 1);
         }
 
-        .add-to-watchlist-button,
+        .available-trailer {
+            display: block;
+        }
+
+        .unavailable-trailer {
+            display: none;
+        }
+
+        .watchlist-button,
         .show-overview-button {
             background-color: hsla(205, 54%, 51%, 1);
         }

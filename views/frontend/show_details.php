@@ -6,17 +6,19 @@
 
             <div class="show-user-actions">
                 <div class="preshow-actions">
-                    <button id="play-trailer-button">
+                    <!-- classe no-trailer ou available-trailer suivant le cas. Le style sera à ajouter ... -->
+                    <button class="play-trailer-button">
                         <i class="fas fa-play"></i>
                         <p>Bande-annonce</p>
                     </button>
-                    <button class="add-to-watchlist-button">
+
+                    <button class="watchlist-button">
                         <i class="fas fa-list"></i>
                         <p>Ajouter à ma liste</p>
                     </button>
                 </div>
 
-                <div id="trailer-player">
+                <div class="trailer-player">
                 </div>
 
                 <div class="broadcaster-block">
@@ -53,6 +55,5 @@
                 <h2>Distribution :</h2>
                 <ul class="casting-list"></ul>
             </div>
-            <script src="./../../assets/js/trailer_displayer.js"></script>
             <script src="./../../assets/js/show_content_loader.js"></script>
         </div>

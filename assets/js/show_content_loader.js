@@ -2,10 +2,11 @@ function renderShowSpecifics(show) {
     renderShowLayer(show)
     renderShowCasting(show)
     renderShowName(show)
+    renderShowTrailerButton(show)
     renderShowTrailer(show)
     renderShowLength(show)
     renderShowGenre(show)
-    renderShowType(show)
+    renderShowType()
     renderShowDirector(show)
     renderShowSynopsis(show)
 }
@@ -28,12 +29,30 @@ function renderShowName(show) {
     }
 }
 
-function renderShowTrailer(show) {
-    var trailerBox = document.getElementById('trailer-player')
-    var trailerFrame = document.createElement('iframe')
-    trailerFrame.src = "https://www.youtube.com/embed/" + show.videos.results[0].key
+function renderShowTrailerButton(show) {
+    var trailerButton = document.getElementsByClassName('play-trailer-button')[0]
 
-    trailerBox.appendChild(trailerFrame)
+    if (show.videos.results.length > 0) {
+        trailerButton.className += ' available-trailer'
+        trailerButton.style = 'block'
+    } else {
+        trailerButton.className += ' unavailable-trailer'
+    }
+}
+
+function renderShowTrailer(show) {
+    var trailerButton = document.getElementsByClassName('play-trailer-button')[0];
+    var trailerBox = document.getElementsByClassName('trailer-player')[0]
+    if (show.videos.results.length > 0) {
+        var trailerFrame = document.createElement('iframe')
+        trailerFrame.src = "https://www.youtube.com/embed/" + show.videos.results[0].key
+    
+        trailerBox.appendChild(trailerFrame)
+
+        trailerButton.addEventListener("click", function(){
+            trailerBox.style.display = "block";
+        })
+    }
 }
 
 function renderShowLayer(show) {
@@ -101,7 +120,7 @@ function renderShowGenre(show) {
     showGenreText.textContent = showGenreValues
 }
 
-function renderShowType(show) {
+function renderShowType() {
     var broadcasterBlock = document.getElementsByClassName('broadcaster-block')[0]
     var broadcasterIntro = broadcasterBlock.getElementsByTagName('p')[0]
     var showRatingButton = document.getElementsByClassName('show-overview-button')[0]
@@ -167,13 +186,13 @@ function renderShowSynopsis(show) {
     synopsisText.innerHTML = "<p>" + synopsisValue + "</p>"
 }
 
-// "Matrix" movie
-show_id = 603
-show_type = 'movie'
+// Movies : "Matrix" (603), "Princesse Mononoké" (128)
+// show_id = 603
+// show_type = 'movie'
 
-// "Lucifer" tv show
-// show_id = 63174
-// show_type = 'tv'
+// TV shows : "Lucifer" (63174), "American Horror Story (1413)", "The boys" (76479)
+show_id = 63174
+show_type = 'tv'
 
 window.addEventListener('load', () => {
     // fetch les data de la série Lucifer (id 63174)
