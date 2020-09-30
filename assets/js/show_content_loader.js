@@ -88,9 +88,6 @@ function renderShowCasting(show) {
             actorName.textContent = card.name
             actorLink.href = 'index.php?action=getActorInfo&amp;id=' + card.id
             actorLink.className = 'actor-link'
-            
-            console.log(actorLink)
-            console.log(actorCard)
 
             castingList.appendChild(actorCard)
             actorCard.appendChild(actorImgContainer)
@@ -208,11 +205,10 @@ function renderShowSynopsis(show) {
 // show_type = 'movie'
 
 // TV shows : "Lucifer" (63174), "American Horror Story (1413)", "The boys" (76479)
-show_id = 63174
-show_type = 'tv'
+show_id = document.getElementsByClassName('show-overview-button')[0].id
+show_type = document.getElementsByClassName('show-block')[0].id
 
 window.addEventListener('load', () => {
-    // fetch les data de la série Lucifer (id 63174)
     fetch("https://api.themoviedb.org/3/" + show_type + "/" + show_id + "?api_key=9681493c16e2c16cba85aee9de76d451&language=fr-FR&append_to_response=credits,videos")
     .then(response => response.json())
     .then(showData => renderShowSpecifics(showData))
