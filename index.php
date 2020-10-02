@@ -4,7 +4,10 @@
 
     try
     {
-        // views for landing page (unregistered) 
+        require 'controller/frontoffice.php'
+            $frontOffice_controller = new FrontOffice_Controller;
+            
+        // views for landing page (unregistered)
         if (!isset($_GET['action'])) {
             require 'views/frontend/image_layer.php';
             require 'views/frontend/app_presentation.php';
@@ -13,6 +16,14 @@
         elseif (isset($_GET['action'])) {
 
             // views for show details page
+            
+
+            /**
+            *
+            * Frontoffice features available for all users
+            *
+            **/
+
             if ($_GET['action'] === 'getShowDetails' && isset($_GET['id']) && isset($_GET['type'])) {
                 require 'views/frontend/image_layer.php';
                 require 'views/frontend/show_details.php';
