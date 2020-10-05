@@ -1,32 +1,22 @@
 <?php
 
+    require './controller/FrontofficeController.php';
+    $frontoffice_controller = new Frontoffice_Controller;
+
     require 'views/frontend/header.php';
 
     try
     {
-        require 'controller/frontoffice.php'
-            $frontOffice_controller = new FrontOffice_Controller;
-            
         // views for landing page (unregistered)
         if (!isset($_GET['action'])) {
-            require 'views/frontend/image_layer.php';
-            require 'views/frontend/app_presentation.php';
+            $frontoffice_controller->displayUnregisteredLandingPage();
         }
 
         elseif (isset($_GET['action'])) {
 
             // views for show details page
-            
-
-            /**
-            *
-            * Frontoffice features available for all users
-            *
-            **/
-
             if ($_GET['action'] === 'getShowDetails' && isset($_GET['id']) && isset($_GET['type'])) {
-                require 'views/frontend/image_layer.php';
-                require 'views/frontend/show_details.php';
+                $frontoffice_controller->displayShowDetailsTemplate();
             }
 
             // views for artist details page

@@ -9,24 +9,18 @@
         * displayCustomNavBar method tests the 'status' data in session and display the right nav bar view.
         *
         **/
-        
-        protected function displayNavBar()
-        {
-            // if (isset($_SESSION['status']))
-            // {
-            //     if (($_SESSION['status'] === 'sAdmin') || ($_SESSION['status'] === 'admin'))
-            //     {
-            //         require 'view/backend/admin-nav-bar.php';
-            //     }
-            //     else
-            //     {
-            //         require 'view/frontend/member-nav-bar.php';
-            //     }
-            // }
-            
-            // else
-            // {
-            //     require './view/frontend/unregistered-nav-bar.php';
-            // }
+
+        public function displayLandingPage() {
+            // test sur la session en cours pour afficher les bonnes vues
+        }
+
+        public function displayUnregisteredLandingPage() {
+            require 'views/frontend/image_layer.php';
+            require 'views/frontend/app_presentation.php';
+        }
+
+        public function displayShowDetailsTemplate() {
+            require 'views/frontend/image_layer.php';
+            require 'views/frontend/show_details.php';
         }
     }

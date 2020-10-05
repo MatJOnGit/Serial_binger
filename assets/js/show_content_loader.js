@@ -11,6 +11,15 @@ function renderShowSpecifics(show) {
     renderShowSynopsis(show)
 }
 
+/* Show Layer */
+
+function renderShowLayer(show) {
+    var backgroundBox = document.getElementsByClassName("show_layer")[0]
+    var baseUrl = 'https://image.tmdb.org/t/p/w500'
+    backgroundBox.style.backgroundImage = "url('" + baseUrl + show.backdrop_path + "')"
+}
+
+/* Show Content */
 function renderShowName(show) {
     var titleElt = document.getElementsByTagName("h1")[0]
     var firstAiringDate = ""
@@ -27,6 +36,17 @@ function renderShowName(show) {
     else {
         titleElt.textContent = show.name + ' (' + firstAiringDate + ')'
     }
+}
+
+function renderShowSynopsis(show) {
+    var showHeader = document.getElementsByClassName('show-header')[0]
+    var synopsisText = document.createElement('p')
+    var synopsisValue = show.overview
+
+    synopsisValue = synopsisValue.replaceAll("\n\n", '</p><p>')
+    
+    showHeader.appendChild(synopsisText)
+    synopsisText.innerHTML = "<p>" + synopsisValue + "</p>"
 }
 
 function renderShowTrailerButton(show) {
@@ -46,6 +66,8 @@ function renderShowTrailer(show) {
     if (show.videos.results.length > 0) {
         var trailerFrame = document.createElement('iframe')
         trailerFrame.src = "https://www.youtube.com/embed/" + show.videos.results[0].key
+        var trailerParams = 'rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0 frameborder="0" allowfullscreen'
+        // console.log(TrailerFrame)
     
         trailerBox.appendChild(trailerFrame)
 
@@ -55,53 +77,7 @@ function renderShowTrailer(show) {
     }
 }
 
-function renderShowLayer(show) {
-    var backgroundBox = document.getElementsByClassName("show_layer")[0]
-    var baseUrl = 'https://image.tmdb.org/t/p/w500'
-    backgroundBox.style.backgroundImage = "url('" + baseUrl + show.backdrop_path + "')"
-}
-
-function renderShowCasting(show) {
-    var castingList = document.getElementsByClassName("casting-list")[0]
-
-    // set max number of actor cards
-    var maxDisplayedCards = 10
-
-    show.credits.cast.forEach((card, index) => {
-
-        // render the 10 first actor card if they have an profile picture
-        if ((card.profile_path !== null) && (index < maxDisplayedCards)) {
-            var actorCard = document.createElement('li')
-            var actorImgContainer = document.createElement('div')
-            var actorImg = document.createElement('img')
-            var actorLink = document.createElement('a')
-            var actorLinkIcon = document.createElement('i')
-            var cardTextBox = document.createElement('div')
-            var actorRole = document.createElement('p')
-            var actorName = document.createElement('p')
-
-            actorCard.className = 'actor-card'
-            actorImg.src = "https://image.tmdb.org/t/p/w500" + card.profile_path
-            actorImg.alt = card.name
-            actorLinkIcon.className = 'fas fa-link'
-            actorRole.textContent = card.character
-            actorName.textContent = card.name
-            actorLink.href = 'index.php?action=getActorInfo&amp;id=' + card.id
-            actorLink.className = 'actor-link'
-
-            castingList.appendChild(actorCard)
-            actorCard.appendChild(actorImgContainer)
-            actorImgContainer.appendChild(actorImg)
-            actorImgContainer.appendChild(actorLink)
-            actorLink.appendChild(actorLinkIcon)
-            actorCard.appendChild(cardTextBox)
-            cardTextBox.appendChild(actorRole)
-            cardTextBox.appendChild(actorName)
-        }
-    })
-}
-
-// render a show length depending on the show type
+/* render a show length depending on the show type */
 function renderShowLength(show) {
     var showLengthBox = document.getElementsByClassName('show_length')[0]
     var showLengthTitle = showLengthBox.getElementsByTagName('h3')[0]
@@ -189,28 +165,56 @@ function renderShowDirector(show) {
     showDirectorBox.appendChild(showDirectorText)
 }
 
-function renderShowSynopsis(show) {
-    var showHeader = document.getElementsByClassName('show-header')[0]
-    var synopsisText = document.createElement('p')
-    var synopsisValue = show.overview
+/* Casting Slider */
 
-    synopsisValue = synopsisValue.replaceAll("\n\n", '</p><p>')
-    
-    showHeader.appendChild(synopsisText)
-    synopsisText.innerHTML = "<p>" + synopsisValue + "</p>"
+function renderShowCasting(show) {
+    var castingList = document.getElementsByClassName("casting-list")[0]
+
+    // set max number of actor cards
+    var maxDisplayedCards = 10
+
+    show.credits.cast.forEach((card, index) => {
+
+        // render the 10 first actor card if they have an profile picture
+        if ((card.profile_path !== null) && (index < maxDisplayedCards)) {
+            var actorCard = document.createElement('li')
+            var actorImgContainer = document.createElement('div')
+            var actorImg = document.createElement('img')
+            var actorLink = document.createElement('a')
+            var actorLinkIcon = document.createElement('i')
+            var cardTextBox = document.createElement('div')
+            var actorRole = document.createElement('p')
+            var actorName = document.createElement('p')
+
+            actorCard.className = 'actor-card'
+            actorImg.src = "https://image.tmdb.org/t/p/w500" + card.profile_path
+            actorImg.alt = card.name
+            actorLinkIcon.className = 'fas fa-link'
+            actorRole.textContent = card.character
+            actorName.textContent = card.name
+            actorLink.href = 'index.php?action=getActorInfo&amp;id=' + card.id
+            actorLink.className = 'actor-link'
+
+            castingList.appendChild(actorCard)
+            actorCard.appendChild(actorImgContainer)
+            actorImgContainer.appendChild(actorImg)
+            actorImgContainer.appendChild(actorLink)
+            actorLink.appendChild(actorLinkIcon)
+            actorCard.appendChild(cardTextBox)
+            cardTextBox.appendChild(actorRole)
+            cardTextBox.appendChild(actorName)
+        }
+    })
 }
 
-// Movies : "Matrix" (603), "Princesse Mononoké" (128)
-// show_id = 603
-// show_type = 'movie'
-
-// TV shows : "Lucifer" (63174), "American Horror Story (1413)", "The boys" (76479)
-show_id = document.getElementsByClassName('show-overview-button')[0].id
-show_type = document.getElementsByClassName('show-block')[0].id
+const show_id = document.getElementsByClassName('show-overview-button')[0].id
+const show_type = document.getElementsByClassName('show-block')[0].id
+const key = "9681493c16e2c16cba85aee9de76d451"
 
 window.addEventListener('load', () => {
-    fetch("https://api.themoviedb.org/3/" + show_type + "/" + show_id + "?api_key=9681493c16e2c16cba85aee9de76d451&language=fr-FR&append_to_response=credits,videos")
+    fetch(`https://api.themoviedb.org/3/${show_type}/${show_id}?api_key=${key}&language=fr-FR&include_adult=false&append_to_response=credits,videos`)
     .then(response => response.json())
-    .then(showData => renderShowSpecifics(showData))
+    .then(data => new Show(data).showInit())
+    // .then(showData => renderShowSpecifics(showData))
     .catch(error => console.log(error));
 })
