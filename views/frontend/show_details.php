@@ -55,8 +55,10 @@
             <ul class="casting-list"></ul>
         </div>
 
+        <script src="./../../assets/js/Show.model.js"></script>
         <script src="./../../assets/js/Movie.model.js"></script>
         <script src="./../../assets/js/TVShow.model.js"></script>
-        <script src="./../../assets/js/Show.model.js"></script>
+        <script src="./../../assets/js/AnimationShow.model.js"></script>
+        
         <script src="./../../assets/js/show_content_loader.js"></script>
     </div>

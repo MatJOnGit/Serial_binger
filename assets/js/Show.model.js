@@ -1,42 +1,44 @@
-// This duck instances the correct object based on the show type ... for now
+// Show class exists to store the DOM elements we need to edit and commun data
 
 class Show {
-    constructor(showData) {
-        this._showData = showData
+    constructor(data) {
+        this._showData = data
         this._showType = show_type
-    }
+        this._layerContainer = document.getElementsByClassName(`show_layer`)[0]
+        this._backgroundBaseURL = `https://image.tmdb.org/t/p/w500`
 
-    get showType() {
-        return this._showType
+        this._header = document.getElementsByClassName(`show-header`)[0]
+        this._titleElt = document.getElementsByTagName(`h1`)[0]
+        this._synopsisElt = document.createElement('p')
+        this._header.appendChild(this.synopsisElt)
+        // this._
     }
 
     get showData() {
         return this._showData
     }
 
-    showInit() {
-        console.log(`Ce show est un${this.showType === 'movie' ? ' film' : 'e série'}`)
-
-        if (show_type === "movie") {
-            console.log(`On va donc instancier un objet Movie`)
-        } else if (show_type === "tv") {
-
-            // by default, a tv show is NOT an animation show
-            let isAnimationShow = false
-
-            // if there is a genre is set at "Animation", reverse the boolean value of isAnimationShow
-            for (const genreIndex in this.showData.genres) {
-                if (`${this.showData.genres[genreIndex].name}` === `Animation`) {
-                    isAnimationShow = !isAnimationShow
-                }
-            }
-
-            if (isAnimationShow) {
-                console.log(`On va donc instancier un objet AnimationShow`)
-            } else {
-                console.log(`On va donc instancier un objet TVShow`)
-            }
-        }
+    get header() {
+        return this._header
     }
-    
+
+    get layerContainer() {
+        return this._layerContainer
+    }
+
+    get backgroundBaseURL() {
+        return this._backgroundBaseURL
+    }
+
+    get titleElt() {
+        return this._titleElt
+    }
+
+    get showType() {
+        return this._showType
+    }
+
+    get synopsisElt() {
+        return this._synopsisElt
+    }
 }
