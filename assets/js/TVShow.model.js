@@ -12,9 +12,7 @@ class TVShow extends Show {
         this._seasonCount = this.showData.number_of_seasons
         this._creator = this.showData.created_by[0].name
 
-        /* Tests */
-        console.log(super.showData)
-        console.log(`L'objet tvShow a bien été instancié.`)
+        console.log(`L'objet TVShow a bien été instancié.`)
     }
 
     get backdropPath() {
@@ -67,6 +65,11 @@ class TVShow extends Show {
         super.directorsText.textContent = `${this.creator}`
     }
 
+    renderCasting() {
+        let characterSlider = new Slider(super.showData.credits.cast)
+        characterSlider.renderCards()
+    }
+
 
 
 
@@ -78,7 +81,6 @@ class TVShow extends Show {
     }
 
     renderContent() {
-        console.log(`J'affiche le contenu de l'objet TVshow dans ma page`)
         this.renderLayer()
         this.renderTitle()
         this.renderSynopsis()
@@ -86,5 +88,6 @@ class TVShow extends Show {
         this.renderShowGenres()
         this.renderShowDirectors()
         this.editRatingButton()
+        this.renderCasting()
     }
 }

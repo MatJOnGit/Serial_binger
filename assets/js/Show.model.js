@@ -32,6 +32,8 @@ class Show {
         /* Directors container */
         this._directorsTitle = document.getElementsByClassName(`show-directors-title`)[0]
         this._directorsText = document.getElementsByClassName(`show-directors-name`)[0]
+
+        console.log(`L'objet Show a bien été instancié.`)
     }
 
     get showData() {
