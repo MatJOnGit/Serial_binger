@@ -11,15 +11,12 @@ function renderShowSpecifics(show) {
     renderShowSynopsis(show)
 }
 
-/* Show Layer --------------------- OK */
-
 function renderShowLayer(show) {
     var backgroundBox = document.getElementsByClassName("show_layer")[0]
     var baseUrl = 'https://image.tmdb.org/t/p/w500'
     backgroundBox.style.backgroundImage = "url('" + baseUrl + show.backdrop_path + "')"
 }
 
-/* Show Content --------------------- OK */
 function renderShowName(show) {
     var titleElt = document.getElementsByTagName("h1")[0]
     var firstAiringDate = ""
@@ -49,35 +46,6 @@ function renderShowSynopsis(show) {
     synopsisText.innerHTML = "<p>" + synopsisValue + "</p>"
 }
 
-function renderShowTrailerButton(show) {
-    var trailerButton = document.getElementsByClassName('play-trailer-button')[0]
-
-    if (show.videos.results.length > 0) {
-        trailerButton.className += ' available-trailer'
-        trailerButton.style = 'block'
-    } else {
-        trailerButton.className += ' unavailable-trailer'
-    }
-}
-
-function renderShowTrailer(show) {
-    var trailerButton = document.getElementsByClassName('play-trailer-button')[0];
-    var trailerBox = document.getElementsByClassName('trailer-player')[0]
-    if (show.videos.results.length > 0) {
-        var trailerFrame = document.createElement('iframe')
-        trailerFrame.src = "https://www.youtube.com/embed/" + show.videos.results[0].key
-        var trailerParams = 'rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0 frameborder="0" allowfullscreen'
-        // console.log(TrailerFrame)
-    
-        trailerBox.appendChild(trailerFrame)
-
-        trailerButton.addEventListener("click", function(){
-            trailerBox.style.display = "block";
-        })
-    }
-}
-
-/* render a show length depending on the show type */
 function renderShowLength(show) {
     var showLengthBox = document.getElementsByClassName('show_length')[0]
     var showLengthTitle = showLengthBox.getElementsByTagName('h3')[0]
@@ -111,20 +79,13 @@ function renderShowGenre(show) {
 }
 
 function renderShowType() {
-    var broadcasterBlock = document.getElementsByClassName('broadcaster-block')[0]
-    var broadcasterIntro = broadcasterBlock.getElementsByTagName('p')[0]
+
     var showRatingButton = document.getElementsByClassName('show-overview-button')[0]
-    var showInfoBox = document.getElementsByClassName('show-info')[0]
-    var showInfoTitle = showInfoBox.getElementsByTagName('h2')[0]
 
     if (show_type === 'movie') {
-        broadcasterIntro.textContent += 'le film sur :'
         showRatingButton.textContent += 'ce film'
-        showInfoTitle.textContent += 'du film :'
     } else {
-        broadcasterIntro.textContent += 'la série sur :'
         showRatingButton.textContent += 'cette série'
-        showInfoTitle.textContent += 'de la série :'
     }
 }
 
@@ -163,6 +124,49 @@ function renderShowDirector(show) {
 
     showDirectorText.textContent = showDirectorName
     showDirectorBox.appendChild(showDirectorText)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function renderShowTrailerButton(show) {
+    var trailerButton = document.getElementsByClassName('play-trailer-button')[0]
+
+    if (show.videos.results.length > 0) {
+        trailerButton.className += ' available-trailer'
+        trailerButton.style = 'block'
+    } else {
+        trailerButton.className += ' unavailable-trailer'
+    }
+}
+
+function renderShowTrailer(show) {
+    var trailerButton = document.getElementsByClassName('play-trailer-button')[0];
+    var trailerBox = document.getElementsByClassName('trailer-player')[0]
+    if (show.videos.results.length > 0) {
+        var trailerFrame = document.createElement('iframe')
+        trailerFrame.src = "https://www.youtube.com/embed/" + show.videos.results[0].key
+        var trailerParams = 'rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0 frameborder="0" allowfullscreen'
+        // console.log(TrailerFrame)
+    
+        trailerBox.appendChild(trailerFrame)
+
+        trailerButton.addEventListener("click", function(){
+            trailerBox.style.display = "block";
+        })
+    }
 }
 
 /* Casting Slider */
@@ -220,7 +224,7 @@ function initShow(showData) {
 
     } else if (show_type === "tv") {
 
-        // by default, a tv show is NOT an animation show
+        // by default, a tv show is NOT considered as an animation show
         let isAnimationShow = false
 
         // if there is a genre is set at "Animation", reverse the boolean value of isAnimationShow ...
@@ -261,7 +265,5 @@ window.addEventListener('load', () => {
     fetch(`https://api.themoviedb.org/3/${show_type}/${show_id}?api_key=${key}&language=fr-FR&include_adult=false&append_to_response=credits,videos`)
     .then(response => response.json())
     .then(show => initShow(show))
-    // .then(data => new Show(data).showInit())
-    // .then(showData => renderShowSpecifics(showData))
     .catch(error => console.log(error));
 })

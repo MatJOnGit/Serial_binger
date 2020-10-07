@@ -2,6 +2,7 @@
     <div class="show-block" id="<?php echo $_GET['type'] ?>">
         <div class="show-header">
             <h1></h1>
+            <p class="show-synopsis"></p>
         </div>
 
         <div class="show-user-actions">
@@ -21,7 +22,7 @@
             </div>
 
             <div class="broadcaster-block">
-                <p>Voir </p>
+                <p>Voir sur :</p>
                 <button class="netflix-button">Netflix</button>
             </div>
 
@@ -32,19 +33,21 @@
         <hr>
 
         <div class="show-info">
-            <h2>A propos </h2>
-            <div class="show_genre">
-                <h3>Genres :</h3>
-                <p></p>
+            <h2>A propos :</h2>
+
+            <div>
+                <h3 class="show-genre-title">Genres :</h3>
+                <p class="show-genre-value">Non disponible</p>
             </div>
 
-            <div class="show_length">
-                <h3></h3>
-                <p></p>
+            <div>
+                <h3 class="show-length-title">Durée du film :</h3>
+                <p class="show-length-value">Non disponible</p>
             </div>
             
-            <div class="show_director">
-                <h3>Créateur :</h3>
+            <div>
+                <h3 class="show-directors-title">Directeur :</h3>
+                <p class="show-directors-name">Non disponible</p>
             </div>
         </div>
 
