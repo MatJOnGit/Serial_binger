@@ -70,11 +70,20 @@ class TVShow extends Show {
         characterSlider.renderCards()
     }
 
+    renderDisplayableTrailer() {
+        super.trailerFrame.src = `${super.trailerBaseURL}${super.showData.videos.results[0].key}`
+        super.trailerContainer.appendChild(super.trailerFrame)
 
+        super.trailerButton.addEventListener("click", function() {
+            document.getElementsByClassName(`trailer-player`)[0].style.display = "block"
+        })
+    }
 
-
-
-
+    renderTrailerButton() {
+        super.trailerButton.className += ` available-trailer`
+        super.trailerButton.style = `block`
+        this.renderDisplayableTrailer()
+    }
 
     editRatingButton() {
         super.ratingButton.textContent += `cette série`
@@ -89,5 +98,11 @@ class TVShow extends Show {
         this.renderShowDirectors()
         this.editRatingButton()
         this.renderCasting()
+
+        if (super.showData.videos.results.length > 0){
+            this.renderTrailerButton()
+        } else {
+            super.trailerButton.className += ` unavailable-trailer`
+        }
     }
 }

@@ -9,12 +9,13 @@ class Show {
 
         /* Static values */
         this._backgroundBaseURL = `https://image.tmdb.org/t/p/w500`
+        this._trailerBaseURL = `https://www.youtube.com/embed/`
 
         /* Layer DOM elements */
         this._layerContainer = document.getElementsByClassName(`show_layer`)[0]
 
         /* Synopsis DOM elements */
-        this._synopsisElt = document.getElementsByClassName('show-synopsis')[0]
+        this._synopsisElt = document.getElementsByClassName(`show-synopsis`)[0]
 
         /* Title DOM elements */
         this._titleElt = document.getElementsByTagName(`h1`)[0]
@@ -32,6 +33,13 @@ class Show {
         /* Directors container */
         this._directorsTitle = document.getElementsByClassName(`show-directors-title`)[0]
         this._directorsText = document.getElementsByClassName(`show-directors-name`)[0]
+
+        /* Trailer button */
+        this._trailerButton = document.getElementsByClassName(`play-trailer-button`)[0]
+
+        /* Trailer */
+        this._trailerContainer = document.getElementsByClassName(`trailer-player`)[0]
+        this._trailerFrame = document.createElement(`iframe`)
 
         console.log(`L'objet Show a bien été instancié.`)
     }
@@ -82,6 +90,22 @@ class Show {
 
     get ratingButton() {
         return this._ratingButton
+    }
+
+    get trailerButton() {
+        return this._trailerButton
+    }
+
+    get trailerContainer() {
+        return this._trailerContainer
+    }
+
+    get trailerFrame() {
+        return this._trailerFrame
+    }
+
+    get trailerBaseURL() {
+        return this._trailerBaseURL
     }
 
     /* Fure interface methods */
