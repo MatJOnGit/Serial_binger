@@ -2,68 +2,25 @@ class Movie extends Show {
     constructor (movieData) {
         super(movieData)
 
+        /* Static values */
+        this._watchlistButtonCustomText = ` ce film`
+
         /* API data locations and response reworks */
-        this._backdropPath = super.showData.backdrop_path
         this._title = super.showData.title
         this._releaseDate = super.showData.release_date.split('-')[0]
-        this._synopsis = super.showData.overview.replaceAll(`\n\n`, `</p></p>`)
         this._runtime = super.showData.runtime
 
         console.log(`L'objet Movie a bien été instancié.`)
     }
 
-    get backdropPath() {
-        return this._backdropPath
-    }
+    get title() { return this._title }
+    get releaseDate() { return this._releaseDate }
+    get runtime() { return this._runtime }
 
-    get title() {
-        return this._title
-    }
-
-    get releaseDate() {
-        return this._releaseDate
-    }
-
-    get synopsis() {
-        return this._synopsis
-    }
-
-    get runtime() {
-        return this._runtime
-    }
-
-    renderLayer() {
-        super.layerContainer.style.backgroundImage = `url('${super.backgroundBaseURL}${this.backdropPath}')`
-    }
-
-    renderTitle() {
-        super.titleElt.textContent = `${this.title} (${this.releaseDate})`
-    }
-
-    renderSynopsis() {
-        super.synopsisElt.innerHTML = `<p>${this.synopsis}</p>`
-    }
-
-    renderLength() {
+    renderRuntime() {
         let movieMinutesValue = this.runtime % 60
         let movieHoursValue = (this.runtime - movieMinutesValue) / 60
         super.lengthText.textContent = `${movieHoursValue}h${movieMinutesValue}`
-    }
-
-    renderGenres() {
-        super.genreText.textContent = super.buildGenresValue()
-    }
-
-    buildGenresValue() {
-        let genresValue = ""
-        this.showData.genres.forEach((genre, index) => {
-            if (index > 0) {
-                genresValue += `, ${genre.name}`
-            } else {
-                genresValue = `${genre.name}`
-            }
-        })
-        return genresValue
     }
 
     renderDirectors() {
@@ -95,7 +52,7 @@ class Movie extends Show {
             if (directorsCount >= 2) {
                 directorsTitleElt.textContent += `s :`
             } else {
-                directorsTitleElt.textContent = ` :`
+                directorsTitleElt.textContent += ` :`
             }
         }
         else {
@@ -103,45 +60,16 @@ class Movie extends Show {
         }
     }
 
-    editRatingButton() {
-        super.ratingButton.textContent += `ce film`
-    }
-
-    renderCasting() {
-        let characterSlider = new Slider(super.showData.credits.cast)
-        characterSlider.renderCards()
-    }
-
-    renderTrailerButton() {
-        super.trailerButton.className += ` available-trailer`
-        super.trailerButton.style = `block`
-        this.renderDisplayableTrailer()
-    }
-
-    renderDisplayableTrailer() {
-        super.trailerFrame.src = `${super.trailerBaseURL}${super.showData.videos.results[0].key}`
-        super.trailerContainer.appendChild(super.trailerFrame)
-
-        super.trailerButton.addEventListener("click", function() {
-            document.getElementsByClassName(`trailer-player`)[0].style.display = "block"
-        })
-    }
-
     renderContent() {
         console.log(`J'affiche le contenu de l'objet Movie dans ma page`)
-        this.renderLayer()
-        this.renderTitle()
-        this.renderSynopsis()
-        this.renderLength()
-        this.renderGenres()
+        super.renderLayer()
+        super.renderTitle(this.title, this.releaseDate)
+        super.renderSynopsis()
+        this.renderRuntime()
+        super.renderGenres()
         this.renderDirectors()
-        this.editRatingButton()
-        this.renderCasting()
-
-        if (super.showData.videos.results.length > 0){
-            this.renderTrailerButton()
-        } else {
-            super.trailerButton.className += ` unavailable-trailer`
-        }
+        super.editRatingButton(this._watchlistButtonCustomText)
+        super.renderCasting()
+        super.tryRenderingTrailers()
     }
 }
