@@ -44,26 +44,23 @@ class TVShow extends Show {
         super.synopsisElt.innerHTML = `<p>${this.synopsis}</p>`
     }
 
-    renderShowLength() {
+    renderLength() {
         super.lengthTitle.textContent = `Nombre de saison : `
         super.lengthText.textContent = `${this.seasonCount}`
     }
 
-    renderShowGenres() {
+    renderGenres() {
         super.genreText.textContent = super.buildGenresValue()
     }
 
-    renderShowDirectors() {
+    renderDirectors() {
         if (super.showData.created_by.length > 0) {
             let creator = super.showData.created_by[0].name
             super.directorsTitle.textContent = `Créateur :`
             super.directorsText.textContent = creator
         }
         else {
-            let showInfo = document.getElementsByClassName(`show-info`)[0]
-            let showDirectorsContainer = document.getElementsByClassName(`show-directors-container`)[0]
-            showInfo.removeChild(showDirectorsContainer)
-            console.log(`Ce show n'as pas de directeur référencé`)
+            super.removeEmptyDirectorsContainer()
         }
     }
 
@@ -76,6 +73,12 @@ class TVShow extends Show {
         characterSlider.renderCards()
     }
 
+    renderTrailerButton() {
+        super.trailerButton.className += ` available-trailer`
+        super.trailerButton.style = `block`
+        this.renderDisplayableTrailer()
+    }
+
     renderDisplayableTrailer() {
         super.trailerFrame.src = `${super.trailerBaseURL}${super.showData.videos.results[0].key}`
         super.trailerContainer.appendChild(super.trailerFrame)
@@ -85,19 +88,13 @@ class TVShow extends Show {
         })
     }
 
-    renderTrailerButton() {
-        super.trailerButton.className += ` available-trailer`
-        super.trailerButton.style = `block`
-        this.renderDisplayableTrailer()
-    }
-
     renderContent() {
         this.renderLayer()
         this.renderTitle()
         this.renderSynopsis()
-        this.renderShowLength()
-        this.renderShowGenres()
-        this.renderShowDirectors()
+        this.renderLength()
+        this.renderGenres()
+        this.renderDirectors()
         this.editRatingButton()
         this.renderCasting()
 

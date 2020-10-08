@@ -119,4 +119,11 @@ class Show {
         })
         return genresValue
     }
+
+    removeEmptyDirectorsContainer() {
+        let showInfo = document.getElementsByClassName(`show-info`)[0]
+        let showDirectorsContainer = document.getElementsByClassName(`show-directors-container`)[0]
+        showInfo.removeChild(showDirectorsContainer)
+        console.log(`Ce show n'as pas de directeur référencé`)
+    }
 }
