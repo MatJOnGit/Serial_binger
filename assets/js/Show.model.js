@@ -108,7 +108,6 @@ class Show {
         return this._trailerBaseURL
     }
 
-    /* Fure interface methods */
     buildGenresValue() {
         let genresValue = ""
         this.showData.genres.forEach((genre, index) => {

@@ -45,7 +45,7 @@
                 <p class="show-length-value">Non disponible</p>
             </div>
             
-            <div>
+            <div class="show-directors-container">
                 <h3 class="show-directors-title">Directeur :</h3>
                 <p class="show-directors-name">Non disponible</p>
             </div>

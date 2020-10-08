@@ -1,16 +1,13 @@
-// TVShow class exists to assign the appropriate data from the API response to the appropriate DOM element
-
 class TVShow extends Show {
     constructor (TVShowData) {
         super(TVShowData)
 
         /* API data locations and response reworks */
-        this._backdropPath = this.showData.backdrop_path
-        this._title = this.showData.name
-        this._releaseDate = this.showData.first_air_date.split('-')[0]
-        this._synopsis = this.showData.overview.replaceAll(`\n\n`, `</p></p>`)
-        this._seasonCount = this.showData.number_of_seasons
-        this._creator = this.showData.created_by[0].name
+        this._backdropPath = super.showData.backdrop_path
+        this._title = super.showData.name
+        this._releaseDate = super.showData.first_air_date.split('-')[0]
+        this._synopsis = super.showData.overview.replaceAll(`\n\n`, `</p></p>`)
+        this._seasonCount = super.showData.number_of_seasons
 
         console.log(`L'objet TVShow a bien été instancié.`)
     }
@@ -35,10 +32,6 @@ class TVShow extends Show {
         return this._seasonCount
     }
 
-    get creator() {
-        return this._creator
-    }
-
     renderLayer() {
         super.layerContainer.style.backgroundImage = `url('${super.backgroundBaseURL}${this.backdropPath}')`
     }
@@ -61,8 +54,21 @@ class TVShow extends Show {
     }
 
     renderShowDirectors() {
-        super.directorsTitle.textContent = `Créateur :`
-        super.directorsText.textContent = `${this.creator}`
+        if (super.showData.created_by.length > 0) {
+            let creator = super.showData.created_by[0].name
+            super.directorsTitle.textContent = `Créateur :`
+            super.directorsText.textContent = creator
+        }
+        else {
+            let showInfo = document.getElementsByClassName(`show-info`)[0]
+            let showDirectorsContainer = document.getElementsByClassName(`show-directors-container`)[0]
+            showInfo.removeChild(showDirectorsContainer)
+            console.log(`Ce show n'as pas de directeur référencé`)
+        }
+    }
+
+    editRatingButton() {
+        super.ratingButton.textContent += `cette série`
     }
 
     renderCasting() {
@@ -83,10 +89,6 @@ class TVShow extends Show {
         super.trailerButton.className += ` available-trailer`
         super.trailerButton.style = `block`
         this.renderDisplayableTrailer()
-    }
-
-    editRatingButton() {
-        super.ratingButton.textContent += `cette série`
     }
 
     renderContent() {
