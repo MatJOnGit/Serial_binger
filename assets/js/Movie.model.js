@@ -68,8 +68,8 @@ class Movie extends Show {
         this.renderRuntime()
         super.renderGenres()
         this.renderDirectors()
-        super.editRatingButton(this._watchlistButtonCustomText)
         super.renderCasting()
-        super.tryRenderingTrailers()
+        super.tryRenderingTrailer()
+        super.editRatingButton(this._watchlistButtonCustomText)
     }
 }

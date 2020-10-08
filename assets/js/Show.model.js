@@ -112,7 +112,7 @@ class Show {
 
     /*---------------- Trailer display ----------------*/
 
-    tryRenderingTrailers() {
+    tryRenderingTrailer() {
         if (this.showData.videos.results.length > 0){
             this.renderTrailerButton()
         } else {
