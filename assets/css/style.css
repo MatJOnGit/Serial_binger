@@ -69,7 +69,7 @@ header input {
 
 .content_intro {
     width: 100%;
-    height: 350px;
+    height: 225px;
     position: relative;
 }
 
@@ -123,11 +123,13 @@ header input {
         background-color: hsla(232, 53%, 25%, 1);
     }
 
-    .features > div {
+    section,
+    .registration-box {
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
+        margin-top: 20px;
     }
 
     .features > div[class*="-card"] {
@@ -160,10 +162,33 @@ header input {
         font-family: 'Arvo', sans-serif;
     }
 
-    hr {
-        width: 40%;
-        box-shadow: 0 1px hsla(0 , 0%, 100%, .2);
-        margin: 30px auto;
+    .splitter {
+        width: 100%;
+        height: 30px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .splitter-underline {
+        display: block;
+        width: 35%;
+        height: 1px;
+        background-image: linear-gradient(
+            to right,
+            #f0f0f0,
+            #8f8f8f,
+            #f0f0f0
+        );
+    }
+
+    .transformed-logo {
+        width: 30px;
+        height: 30px;
+        transform: rotate(-35deg);
+        margin: 0 10px;
     }
 
     /* Registration box */
@@ -194,7 +219,7 @@ header input {
         background-color: hsla(232, 53%, 25%, 1);
     }
 
-    .show-block > div {
+    .show-block > section {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -216,7 +241,7 @@ header input {
 
         .show-user-actions > div,
         .show-user-actions > button {
-            margin: 20px 0;
+            margin-top: 20px;
         }
 
         .trailer-player {
@@ -299,6 +324,10 @@ header input {
             overflow-y: hidden;
         }
 
+        .casting-list {
+            margin: 20px 0 0 0;
+        }
+
         .actor-card > div:first-child {
             list-style: none;
             width: 110px;
@@ -345,29 +374,6 @@ header input {
             margin-top: 5px;
             font-style: italic;
         }
-
-        
-
-
-
-    
-
-        
-
-        
-        
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Footer */
 
