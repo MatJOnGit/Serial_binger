@@ -19,6 +19,23 @@ h1, h2, h3, ul, p {
     padding: 0;
 }
 
+h1, h2 {
+    text-align: center;
+}
+
+h1 {
+    font-size: 1.8em;
+}
+
+h2 {
+    font-size: 1.4em;
+}
+
+.subtitled {
+    font-style: italic;
+    font-size: 0.8em;
+}
+
 button p {
     font-size: .9em;
 }
@@ -116,10 +133,16 @@ header input {
     flex-direction: column;
 }
 
+    /* Presentation */
+
+    h1 {
+        margin-bottom: 40px;
+    }
+
     /* Features */
 
     .features {
-        padding: 30px 10%;
+        padding: 10px 10%;
         background-color: hsla(232, 53%, 25%, 1);
     }
 
@@ -129,7 +152,7 @@ header input {
         flex-direction: column;
         align-items: center;
         width: 100%;
-        margin-top: 20px;
+        margin: 20px 0;
     }
 
     .features > div[class*="-card"] {
@@ -145,18 +168,6 @@ header input {
         background-size: cover;
     }
 
-    .catalogue-card .rounded {
-        background-image: url("./../images/vignets/compare.jpg");
-    }
-
-    .suggestions-card .rounded {
-        background-image: url("./../images/vignets/advice.jpg");
-    }
-
-    .binging-plan-card .rounded {
-        background-image: url("./../images/vignets/plan.jpg");
-    }
-
     h2 {
         margin-bottom: 10px;
         font-family: 'Arvo', sans-serif;
@@ -169,7 +180,6 @@ header input {
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        margin-top: 20px;
     }
 
     .splitter-underline {
@@ -215,7 +225,7 @@ header input {
     /* show details */
 
     .show-block {
-        padding: 30px 10%;
+        padding: 10px 10%;
         background-color: hsla(232, 53%, 25%, 1);
     }
 
@@ -228,12 +238,7 @@ header input {
 
         /* show header */
 
-        .show-header {
-            margin-bottom: 15px;
-        }
-
         .show-header p {
-            margin-top: 14px;
             font-style: italic;
         }
 
@@ -241,7 +246,7 @@ header input {
 
         .show-user-actions > div,
         .show-user-actions > button {
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         .trailer-player {

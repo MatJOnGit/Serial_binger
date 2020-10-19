@@ -1,7 +1,9 @@
 <div class="main-content">
     <div class="show-block" id="<?php echo $_GET['type'] ?>">
-        <section class="show-header">
-            <h1></h1>
+    
+        <h1></h1>
+
+        <section class="show-header">    
             <p class="show-synopsis"></p>
         </section>
 
