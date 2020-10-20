@@ -24,16 +24,22 @@ h1, h2 {
 }
 
 h1 {
-    font-size: 1.8em;
+    font-size: 2em;
+    font-style: italic;
 }
 
 h2 {
-    font-size: 1.4em;
+    font-size: 1.5em;
 }
 
-.subtitled {
+h3 {
+    font-size: 1.4em;
     font-style: italic;
-    font-size: 0.8em;
+    text-align: center;
+}
+
+h4 {
+    font-size: 1.2em;
 }
 
 button p {
@@ -135,8 +141,17 @@ header input {
 
     /* Presentation */
 
-    h1 {
-        margin-bottom: 40px;
+    .app-intro h3 {
+        margin-bottom: 20px;
+    }
+
+    /* .app-intro { */
+        /* margin-top: 20px;
+    } */
+
+    .features section:first-child {
+        margin-top: 50px;
+        color: red;
     }
 
     /* Features */
@@ -146,12 +161,15 @@ header input {
         background-color: hsla(232, 53%, 25%, 1);
     }
 
+    .features-header {
+        margin-bottom: 50px;
+    }
+
     section,
     .registration-box {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
         margin: 20px 0;
     }
 
@@ -162,14 +180,12 @@ header input {
     .rounded {
         width: 100px;
         height: 100px;
-        margin-bottom: 20px;
-        border: 1px white solid;
+        margin-bottom: 10px;
         border-radius: 50%;
         background-size: cover;
     }
 
     h2 {
-        margin-bottom: 10px;
         font-family: 'Arvo', sans-serif;
     }
 
@@ -204,7 +220,7 @@ header input {
     /* Registration box */
 
     .registration-box {
-        margin: 80px auto 0;
+        margin: 60px auto 0;
     }
 
     .registration-box a {
@@ -301,42 +317,42 @@ header input {
         .netflix-button {
             width: 60px;
             height: 60px;
-            border-radius: 50% !important;
+            border-radius: 50%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             margin-top: 10px;
             background-color: black;
-            color: red !important;
+            color: red;
         }
 
-        .show-info h3 {
-            margin-top: 15px;
+        h4 {
+            margin: 15px 0 0;
         }
 
         /* Casting */
 
         .show-casting {
             margin-bottom: 30px;
+            width: 100%;
         }
 
-        .show-casting ul {
-            width: 100%;
+        .casting-list {
+            margin: 20px 0 0;
             display: flex;
             flex-direction: row;
             overflow-x: auto;
             overflow-y: hidden;
         }
 
-        .casting-list {
-            margin: 20px 0 0 0;
+        .actor-card {
+            list-style: none;
+            margin: 0 8px 0 0;
         }
 
         .actor-card > div:first-child {
-            list-style: none;
-            width: 110px;
-            margin: 0 5px;
+            width: 130px;
             position: relative;
         }
 
@@ -347,7 +363,7 @@ header input {
         } 
 
         .show-casting li img {
-            width: 110px;
+            width: 130px;
         }
 
         .actor-link {
@@ -364,6 +380,10 @@ header input {
 
         .fa-link {
             margin: 5px;
+            height: 18px;
+            background-color: black;
+            padding: 6px;
+            border-radius: 50%;
         }
 
         .actor-card div:last-child {
