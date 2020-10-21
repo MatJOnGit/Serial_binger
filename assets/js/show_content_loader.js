@@ -1,14 +1,14 @@
 const show_type = document.getElementsByClassName('show-block')[0].id
 const show_id = document.getElementsByClassName('show-overview-button')[0].id
-const key = "9681493c16e2c16cba85aee9de76d451"
-defaultResponseTongue = "fr-FR"
-backupResponseTongue = "us-US"
+const key = `9681493c16e2c16cba85aee9de76d451`
+defaultResponseTongue = `fr-FR`
+backupResponseTongue = `us-US`
 
 function initShow(showData) {
-    if (show_type === "movie") {
+    if (show_type === `movie`) {
         displayMovieData(showData)
 
-    } else if (show_type === "tv") {
+    } else if (show_type === `tv`) {
         displayTVShowData(showData)       
     }
     testMissingSynopsis(showData)

@@ -30,24 +30,24 @@ session_start();
     <meta name="twitter:image" content=".assets/img/social_medias/wolf_social_medias.jpg">
 
     <!-- CSS and fonts -->
-    <link rel="stylesheet" href="./assets/css/normalize.css" type="text/css">
-    <link rel="stylesheet" href="./assets/css/style.css" type="text/css">
+    <link rel='stylesheet' href='./assets/css/normalize.css' type='text/css'>
+    <link rel='stylesheet' href='./assets/css/style.css' type='text/css'>
     
     <!-- Fontawesome icons and favicon -->
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <link rel="icon" type="image/png" href="./../assets/images/icons/logo-serial-binger.png">
+    <link rel='stylesheet' href='https://pro.fontawesome.com/releases/v5.10.0/css/all.css' integrity='sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p' crossorigin='anonymous'/>
+    <link rel='icon' type='image/png' href='./../assets/images/icons/logo-serial-binger.png'>
     
     <title>Serial Binger, votre assistant de binge watching</title>
 </head>
 <body>
     <div id='wrapper'>
         <header>
-            <img src="./../../assets/images/icons/logo-serial-binger.png" alt="serial binger logo"/>
-            <form action="/action_page.php">
-                <input type="text" placeholder="Recherche..." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
+            <img src='./../../assets/images/icons/logo-serial-binger.png' alt='serial binger logo'/>
+            <form action='index.php?action=searchContent' method='post'>
+                <input type='text' placeholder='Recherche...' name='searched-content' required />
+                <button type='submit'><i class='fa fa-search'></i></button>
             </form>
-            <div id="menu">
-                <i class="fas fa-2x fa-bars"></i>
+            <div id='menu'>
+                <i class='fas fa-2x fa-bars'></i>
             </div>
         </header>

@@ -9,7 +9,9 @@
 }
 
 input {
-    font-family: 'Arvo', sans-serif;
+    /* font-family: 'Arvo', sans-serif; */
+    color: black;
+    font-weight: 600;
 }
 
 /* Addition to normalize.css */
@@ -399,6 +401,97 @@ header input {
             margin-top: 5px;
             font-style: italic;
         }
+
+    /* search page */
+
+    .search-results {
+        padding: 10px 10%;
+        background-color: hsla(232, 53%, 25%, 1);
+    }
+
+    .results-menu {
+        width: 100%;
+        height: 40px;
+        margin-top: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        list-style: none;
+    }
+
+    .results-menu li {
+        width: 25%;
+        height: 100%;
+        border: 1px solid white;
+        margin: auto;
+        padding: 0 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 10px;
+        box-shadow: 2px 2px 2px whitesmoke;
+    }
+
+    }
+    .active-item {
+        background-color: hsla(232, 53%, 36%, 1);
+    }
+
+    .inactive-item {
+        background-color: hsla(232, 53%, 14%, 1);
+    }
+
+    .search-results-list {
+        width: 100%;
+        list-style: none;
+        margin: 30px 0 50px;
+    }
+
+    .search-results-list li {
+        width: 100%;
+        height: 100px;
+        margin-top: 15px;
+        border-radius: 10px;
+        display: block;
+        border: 1px solid white;
+    }
+
+    .search-results-list a {
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        text-decoration: none;
+    }
+
+    .result-card div {
+        height: 100%;
+        padding: 0 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .show-info-container {
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    h5 {
+        margin: 5px 0;
+    }
+
+    .show-info-container p {
+        font-size: 0.9em;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .search-results-list img {
+        height: 90px;
+        width: 60px;
+    }
 
 /* Footer */
 

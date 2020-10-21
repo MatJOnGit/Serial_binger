@@ -36,7 +36,7 @@ class Slider {
         const actorName = document.createElement('p')
 
         actorCard.className = 'actor-card'
-        actorImg.src = "https://image.tmdb.org/t/p/w500" + card.profile_path
+        actorImg.src = `https://image.tmdb.org/t/p/w500` + card.profile_path
         actorImg.alt = card.name
         actorLinkIcon.className = 'fas fa-link'
         actorRole.textContent = card.character

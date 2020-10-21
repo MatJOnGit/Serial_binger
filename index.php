@@ -24,6 +24,18 @@
                 require 'views/frontend/image_layer.php';
                 require 'views/frontend/artist_details.php';
             }
+
+            elseif ($_GET['action'] === 'searchContent') {
+                require './controller/FrontendController.php';
+                $frontend_Controller = new Frontend_Controller;
+                $frontend_Controller->getContentSearch();
+            }
+
+            elseif ($_GET['action'] === 'getSearchResults') {
+                require './controller/FrontendController.php';
+                $frontend_Controller = new Frontend_Controller;
+                $frontend_Controller->displaySearchResults();
+            }
         }
     }
 
