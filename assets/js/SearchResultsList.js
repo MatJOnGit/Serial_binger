@@ -3,10 +3,12 @@ class SearchResultsList {
         console.log(`L'objet SearchResultsList a bien été initialisé.`)
         this._showList = shows
         this._searchResultsList = document.getElementsByClassName(`search-results-list`)[0]
+        this._synopsisMaxLength = 100
     }
 
     get showList() { return this._showList }
     get searchResultsList() { return this._searchResultsList }
+    get synopsisMaxLength() { return this._synopsisMaxLength}
 
     // display every result in the list
     displayList() {
@@ -30,9 +32,21 @@ class SearchResultsList {
         resultLink.href = 'index.php?action=getShowDetails&type=movie&id=' + showItem.id
         showImgContainer.className =`poster-container`
         showPoster.src = `https://image.tmdb.org/t/p/w500` + showItem.poster_path
-        showInfo.className= `show-info-container`
+        showInfo.className= `show-info-container truncate`
         showTitle.textContent = `${showItem.title} (${showItem.release_date.split('-')[0]})`
-        showOverview.textContent = showItem.overview
+
+        if (('overview' in showItem) && (showItem.overview.length > 0)) {
+            if (showItem.overview.length <= this.synopsisMaxLength) {
+                showOverview.textContent = showItem.overview
+            }
+            else {
+                showOverview.textContent = showItem.overview.substring(0, this.synopsisMaxLength) + "...";
+            }
+        }
+        else {
+            showOverview.textContent = '~ Aucun synopsis pour ce film ~'
+        }
+        
 
 
         this.searchResultsList.appendChild(resultCard)

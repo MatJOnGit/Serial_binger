@@ -420,17 +420,16 @@ header input {
     }
 
     .results-menu li {
-        width: 25%;
+        width: 27%;
         height: 100%;
         border: 1px solid white;
-        margin: auto;
         padding: 0 5px;
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        border-radius: 10px;
-        box-shadow: 2px 2px 2px whitesmoke;
+        border-radius: 50px;
+        box-shadow: 1px 2px 2px whitesmoke;
     }
 
     }
@@ -461,7 +460,6 @@ header input {
         height: 100%;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
         text-decoration: none;
     }
 
@@ -473,8 +471,12 @@ header input {
         justify-content: center;
     }
 
+    .poster-container {
+        width: 
+    }
+
     .show-info-container {
-        text-overflow: ellipsis;
+        height: 100%;
         overflow: hidden;
     }
 
@@ -484,8 +486,6 @@ header input {
 
     .show-info-container p {
         font-size: 0.9em;
-        text-overflow: ellipsis;
-        overflow: hidden;
     }
 
     .search-results-list img {

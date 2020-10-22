@@ -5,7 +5,7 @@
 
         <ul class='results-menu'>
             <li class='movies-results active-item'>Films</li>
-            <li class='tv-shows-results inactive-item'>Séries TV</li>
+            <li class='tv-shows-results inactive-item'>Séries</li>
             <li class='actors-results inactive-item'>Acteurs</li>
         </ul>
 
