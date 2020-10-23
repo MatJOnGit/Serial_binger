@@ -12,7 +12,7 @@
         <ul class='search-results-list'>
         </ul>
 
-        <script src='./../../assets/js/SearchResultsList.js'></script>
+        <script src='./../../assets/js/FilteredShowsList.js'></script>
 
         <script src='./../../assets/js/search_results_displayer.js'></script>
     </div>

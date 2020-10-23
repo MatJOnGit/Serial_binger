@@ -8,8 +8,9 @@ window.addEventListener('load', () => {
     fetch(`https://api.themoviedb.org/3/search/${defaultDisplayedResults}?api_key=${key}&language=fr-FR&query=${searchedItem}&page=${defaultResultsPage}&include_adult=false`)
     .then(response => response.json())
     .then(movies => {
-        let movieSearchResults = new SearchResultsList(movies.results)
-        movieSearchResults.displayList()
+        let filteredShowList = new FilteredShowsList(movies.results)
+        filteredShowList.renderShowsList()
     })
     .catch(error => console.log(error))
 })
+

@@ -94,7 +94,7 @@ header input {
 
 .content_intro {
     width: 100%;
-    height: 225px;
+    height: 210px;
     position: relative;
 }
 
@@ -447,16 +447,20 @@ header input {
         margin: 30px 0 50px;
     }
 
-    .search-results-list li {
+    .result-card,
+    .result-card a {
+        border-radius: 10px;
+    }
+
+    .result-card {
         width: 100%;
         height: 100px;
         margin-top: 15px;
-        border-radius: 10px;
         display: block;
         border: 1px solid white;
     }
 
-    .search-results-list a {
+    .result-card a {
         height: 100%;
         display: flex;
         flex-direction: row;
@@ -464,20 +468,32 @@ header input {
     }
 
     .result-card div {
-        height: 100%;
-        padding: 0 5px;
+        height: 100px;
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
 
+    .poster-container,
+    .poster-container img {
+        border-radius: 10px 0 0 10px;
+        width: 65px;
+    }
+
     .poster-container {
-        width: 
+        border-right: 1px solid white;
+        display: flex;
+    }
+
+    .fa-frown {
+        font-size: 2em;
+        text-align: center;
     }
 
     .show-info-container {
         height: 100%;
         overflow: hidden;
+        padding: 0 10px;
     }
 
     h5 {
@@ -486,11 +502,6 @@ header input {
 
     .show-info-container p {
         font-size: 0.9em;
-    }
-
-    .search-results-list img {
-        height: 90px;
-        width: 60px;
     }
 
 /* Footer */
