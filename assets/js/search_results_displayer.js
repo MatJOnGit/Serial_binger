@@ -1,6 +1,12 @@
 const defaultListType = 'movie'
 let requestedContentType = defaultListType
+
 const defaultResultsPage = 1
+let requestedResultsPage = defaultResultsPage
+
+let menuButtonElt
+let menuButtonContent
+
 const key = `9681493c16e2c16cba85aee9de76d451`
 const language = `fr-FR`
 
@@ -11,7 +17,7 @@ const menuItems = menuItemsBlock.getElementsByTagName(`li`)
 
 function renderSearchResults() {
     console.log(`Chargement d'un nouveau contenu`)
-    fetch(`https://api.themoviedb.org/3/search/${requestedContentType}?api_key=${key}&language=${language}&query=${titleName}&page=${defaultResultsPage}&include_adult=false`)
+    fetch(`https://api.themoviedb.org/3/search/${requestedContentType}?api_key=${key}&language=${language}&query=${titleName}&page=${requestedResultsPage}&include_adult=false`)
     .then(response => response.json())
     .then(contents => {
         let filteredContentsList = new FilteredContentsList(contents.results)
@@ -20,25 +26,37 @@ function renderSearchResults() {
     .catch(error => console.log(error))
 }
 
-function getRequestedContentType(requestedContentButton) {
-    let requestedContentButtonClassValue = requestedContentButton.classList.value.split('-results')[0]
-    requestedContentType = requestedContentButtonClassValue
-    renderSearchResults()
-    addContentTypeButtonInteractions() 
-}
-
 function addContentTypeButtonInteractions() {
-    for (const menuItem of menuItems) {
-        if (!menuItem.classList.value.includes(requestedContentType)) {
-            menuItem.addEventListener('click', () => {
-                getRequestedContentType(menuItem)
-            }, {once: true}
-            )
+    for (menuButtonElt of menuItems) {
+        // test si menuButton possède un eventListener{
+        //     si oui, supprimer cet eventListener
+        // }
+        if (menuButtonElt.classList[1].includes(`inactive-`)) {
+            menuButtonElt.removeEventListener('click', refreshContent)
+            menuButtonElt.addEventListener('click', refreshContent)
         }
     }
 }
 
-window.addEventListener('load', () => {
+function refreshContent(e) {
+    // set all button to inactive and set only clicked button to active
+    for (menuButtonElt of menuItems) {
+        menuButtonElt.classList.replace('active-item', 'inactive-item')
+    }
+    e.target.classList.replace('inactive-item', 'active-item')
+    
+    // set the content type based on the clicked button
+    requestedContentType = e.target.classList.value.split('-results')[0]
+    getRequestedContentType()
+}
+
+function getRequestedContentType() {
+    // Charge the request content value out of the clicked button
     renderSearchResults()
-    addContentTypeButtonInteractions()
+    // Add conditionnal eventListeners
+    addContentTypeButtonInteractions() 
+}
+
+window.addEventListener('load', () => {
+    getRequestedContentType()
 })
