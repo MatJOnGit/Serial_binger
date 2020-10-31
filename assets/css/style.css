@@ -44,6 +44,20 @@ h4 {
     font-size: 1.2em;
 }
 
+h5 {
+    font-size: .9em;
+}
+
+.show-header span,
+.artist-header span {
+    font-style: italic;
+    font-size: .9em;
+}
+
+.content-info-container p {
+    font-size: .9em;
+}
+
 button p {
     font-size: .9em;
 }
@@ -69,6 +83,10 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
     margin: 0;
 }
 
@@ -96,6 +114,7 @@ header input {
     width: 100%;
     height: 210px;
     position: relative;
+    margin-top: 50px;
 }
 
 .show_layer {
@@ -354,7 +373,7 @@ header input {
         }
 
         .actor-card > div:first-child {
-            width: 130px;
+            width: 115px;
             position: relative;
         }
 
@@ -365,7 +384,7 @@ header input {
         } 
 
         .show-casting li img {
-            width: 130px;
+            width: 115px;
         }
 
         .actor-link {
@@ -432,9 +451,10 @@ header input {
         box-shadow: 1px 2px 2px whitesmoke;
     }
 
-    }
     .active-item {
-        background-color: hsla(232, 53%, 36%, 1);
+        background-color: white;
+        color: #000080;
+        box-shadow: 1px 2px 2px grey;
     }
 
     .inactive-item {
@@ -466,13 +486,6 @@ header input {
         text-decoration: none;
     }
 
-    .result-card div {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
     .poster-container,
     .poster-container img {
         border-radius: 10px 0 0 10px;
@@ -481,6 +494,10 @@ header input {
     }
 
     .poster-container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         border-right: 1px solid white;
         display: flex;
     }
@@ -490,19 +507,33 @@ header input {
         text-align: center;
     }
 
-    .show-info-container {
+    .content-info-container {
         width: 214px;
-        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
         overflow: hidden;
-        padding: 0 10px;
+        padding: 5px 10px;
+    }
+
+    .show-header,
+    .artist-header {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
     }
 
     h5 {
-        margin: 5px 0;
+        margin: 0 3px 0 0;
     }
 
-    .show-info-container p {
-        font-size: 0.9em;
+    .content-info-container ul {
+        margin-left: 10px;
+        list-style-type: unset;
+    }
+
+    .content-info-container li {
+        font-size: .9em;
     }
 
 /* Footer */

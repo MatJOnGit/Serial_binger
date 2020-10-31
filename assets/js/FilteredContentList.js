@@ -1,122 +1,54 @@
-class FilteredContentsList {
-    constructor (shows) {
-        this._showsItems = shows
-        this._synopsisMaxLength = 110
-        this._showDetailsBaseURL = `index.php?action=getShowDetails&type=movie&id=`
+class FilteredContentList {
+    constructor(contentItems) {
+        this._contentItems = contentItems
+        this._showInfoMaxLength = 110
         this._posterBaseURL = `https://image.tmdb.org/t/p/w500`
 
-        this._showsList = document.getElementsByClassName(`search-results-list`)[0]
+        this._contentList = document.getElementsByClassName(`search-results-list`)[0]
     }
 
-    get showsItems() { return this._showsItems }
-    get synopsisMaxLength() { return this._synopsisMaxLength }
-    get showDetailsBaseURL() { return this._showDetailsBaseURL }
+    get contentItems() { return this._contentItems }
+    get showInfoMaxLength() { return this._showInfoMaxLength }
     get posterBaseURL() { return this._posterBaseURL }
-    get showsList() { return this._showsList }
+    get contentList() { return this._contentList }
 
     // Render all results in the list
-    renderShowsList() {
-        this.emptyList()
-        this.showsItems.forEach(show => {
-            this.renderShowItems(show)
+    renderContentList() {
+        this.emptyContentList()
+        this.contentItems.forEach(contentItem => {
+            this.renderContentItems(contentItem)
         })
     }
 
-    emptyList() {
-        this.showsList.innerHTML = ""
+    emptyContentList() {
+        this.contentList.innerHTML = ""
     }
 
-    // Call methods to render all show data
-    renderShowItems(show) {
-        const showCard = this.renderShowCard()
-        const showLink = this.renderShowLink(show, showCard)
-        const showPosterContainer = this.renderShowPosterContainer(showLink)
-        this.renderShowPoster(show, showPosterContainer)
-        const showInfoContainer = this.renderShowInfoContainer(showLink)
-        this.renderShowTitle(show, showInfoContainer)
-        this.renderShowSynopsis(show, showInfoContainer)
+    renderContentCard() {
+        const contentCard = document.createElement(`li`)
+        contentCard.className = `result-card`
+        this.contentList.appendChild(contentCard)
+        return contentCard
     }
 
-    renderShowCard() {
-        const showCard = document.createElement(`li`)
-        showCard.className = `result-card`
-        this.showsList.appendChild(showCard)
-        return showCard
+    renderContentLink(contentItem, contentCard) {
+        const contentLink = document.createElement(`a`)
+        contentLink.href = `${this.contentDetailsBaseURL}${contentItem.id}`
+        contentCard.appendChild(contentLink)
+        return contentLink
     }
 
-    renderShowLink(showItem, showCard) {
-        const showLink = document.createElement(`a`)
-        showLink.href = `${this.showDetailsBaseURL}${showItem.id}`
-        showCard.appendChild(showLink)
-        return showLink
+    renderContentPosterContainer(contentLink) {
+        const contentPosterContainer = document.createElement(`div`)
+        contentPosterContainer.className =`poster-container`
+        contentLink.appendChild(contentPosterContainer)
+        return contentPosterContainer
     }
 
-    renderShowPosterContainer(showLink) {
-        const showPosterContainer = document.createElement(`div`)
-        showPosterContainer.className =`poster-container`
-        showLink.appendChild(showPosterContainer)
-        return showPosterContainer
+    renderContentInfoContainer(contentLink) {
+        const contentInfoContainer = document.createElement(`div`)
+        contentInfoContainer.className= `content-info-container`
+        contentLink.appendChild(contentInfoContainer)
+        return contentInfoContainer
     }
-
-    renderShowPoster(showItem, showPosterContainer) {
-        if (`poster_path` in showItem) {
-            if (showItem.poster_path != null) {
-                const showPoster = document.createElement(`img`)
-                showPoster.src = `${this.posterBaseURL}${showItem.poster_path}`
-                showPosterContainer.appendChild(showPoster)
-            }
-            else {
-                const sadFaceIcon = document.createElement(`i`)
-                showPosterContainer.style.backgroundColor = `lightslategrey`
-                sadFaceIcon.className = `far fa-frown`
-                showPosterContainer.appendChild(sadFaceIcon)
-            }
-        } else {
-            showPosterContainer.style.backgroundColor = `lightslategrey`
-        }
-    }
-
-    renderShowInfoContainer(showLink) {
-        const showInfoContainer = document.createElement(`div`)
-        showInfoContainer.className= `show-info-container`
-        showLink.appendChild(showInfoContainer)
-        return showInfoContainer
-    }
-
-    renderShowTitle(showItem, showInfoContainer) {
-        const showTitle = document.createElement(`h5`)
-
-        if (`release_date` in showItem) {
-            if (showItem.release_date.length > 0) {
-                showTitle.textContent = `${showItem.title} (${showItem.release_date.split('-')[0]})`
-            }
-            else {
-                showTitle.textContent = `${showItem.title}`
-            }
-        }
-        showInfoContainer.appendChild(showTitle)
-    }
-
-    renderShowSynopsis(showItem, showInfoContainer) {
-        const showOverview = document.createElement(`p`)
-
-        if (`overview` in showItem) {
-            const synopsisLength = showItem.overview.length
-            if ((synopsisLength - 1)*(synopsisLength - this.synopsisMaxLength) <= 0) {
-                showOverview.textContent = showItem.overview
-            }
-            else if (showItem.overview.length > this.synopsisMaxLength) {
-                showOverview.textContent = showItem.overview.substring(0, this.synopsisMaxLength) + `...`;
-            }
-            else {
-                showOverview.textContent = `~ Aucun synopsis pour ce film ~`
-            }
-        }
-        else {
-            showOverview.textContent = `~ Aucun synopsis pour ce film ~`
-        }
-
-        showInfoContainer.appendChild(showOverview)
-    }
-
 }

@@ -6,7 +6,7 @@
         <ul class='results-menu'>
             <li class='movie-results active-item'>Films</li>
             <li class='tv-results inactive-item'>Séries</li>
-            <li class='person-results inactive-item'>Acteurs</li>
+            <li class='person-results inactive-item'>Artistes</li>
         </ul>
 
         <ul class='search-results-list'>
