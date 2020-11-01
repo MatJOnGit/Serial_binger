@@ -12,6 +12,9 @@
         <ul class='search-results-list'>
         </ul>
 
+        <div class='paging-container'>
+        </div>
+
         <script src='./../../assets/js/FilteredContentList.js'></script>
         <script src='./../../assets/js/FilteredMovieList.js'></script>
         <script src='./../../assets/js/FilteredTVShowList.js'></script>

@@ -2,7 +2,7 @@ const defaultListType = 'movie'
 let requestedContentType = defaultListType
 
 const defaultResultsPage = 1
-let requestedResultsPage = defaultResultsPage
+let requestedContentPage = defaultResultsPage
 
 let menuButtonElt
 let menuButtonContent
@@ -11,15 +11,19 @@ const key = `9681493c16e2c16cba85aee9de76d451`
 const language = `fr-FR`
 
 const titleElt = document.getElementsByTagName(`h1`)[0]
-const titleName = titleElt.getElementsByTagName('span')[0].textContent
+const titleNameElt = titleElt.getElementsByTagName('span')[0].textContent
+const titleName = titleNameElt.substring(1, titleNameElt.length-1)
 const menuItemsBlock = document.getElementsByClassName(`results-menu`)[0]
 const menuItems = menuItemsBlock.getElementsByTagName(`li`)
+const pagingContainer = document.getElementsByClassName(`paging-container`)[0]
 
 function renderSearchResults() {
-    console.log(`Chargement d'un nouveau contenu de type ${requestedContentType}`)
-    fetch(`https://api.themoviedb.org/3/search/${requestedContentType}?api_key=${key}&language=${language}&query=${titleName}&page=${requestedResultsPage}&include_adult=false`)
+    fetch(`https://api.themoviedb.org/3/search/${requestedContentType}?api_key=${key}&language=${language}&query=${titleName}&page=${requestedContentPage}&include_adult=false`)
     .then(response => response.json())
     .then(content => {
+        console.log(`requête : https://api.themoviedb.org/3/search/${requestedContentType}?api_key=${key}&language=${language}&query=${titleName}&page=${requestedContentPage}&include_adult=false`)
+        console.log(`Il y a ${content.total_results} résultats pour cette requête`)
+        console.log(`Affichage de ${content.results.length} résultats`)
         switch(requestedContentType) {
             case 'movie':
                 let filteredMovieList = new FilteredMovieList(content.results)
@@ -33,11 +37,10 @@ function renderSearchResults() {
                 let filteredArtistList = new FilteredArtistList(content.results)
                 filteredArtistList.renderContentList()
                 break
-            default:
-                console.log(`${requestedContentType} content is unknown`)
         }
-        
+        return content
     })
+    .then(content => addPagingElements(content))
     .catch(error => console.log(error))
 }
 
@@ -45,8 +48,8 @@ function renderSearchResults() {
 function refreshMenuEventListeners() {
     for (menuButtonElt of menuItems) {
         if (menuButtonElt.classList[1].includes(`inactive-`)) {
-            menuButtonElt.removeEventListener('click', refreshContent)
-            menuButtonElt.addEventListener('click', refreshContent)
+            menuButtonElt.removeEventListener('click', refreshContentType)
+            menuButtonElt.addEventListener('click', refreshContentType)
         }
     }
 }
@@ -59,21 +62,77 @@ function resetMenuClasses(menuButtonElt, menuItems) {
 }
 
 // Refresh Page content
-function refreshContent(clickedMenuButton) {
+function refreshContentType(clickedMenuButton) {
     resetMenuClasses(menuButtonElt, menuItems)
     clickedMenuButton.target.classList.replace('inactive-item', 'active-item')
     // set the content type based on the clicked button
     requestedContentType = clickedMenuButton.target.classList.value.split('-results')[0]
-    getRequestedContentType()
+    // set the content page on default
+    requestedContentPage = defaultResultsPage
+    refreshContentPage()
 }
 
-function getRequestedContentType() {
-    // Charge the request content value out of the clicked button
+function refreshContentPage() {
+    pagingContainer.innerHTML = ``
+    getRequestedContent()
+}
+
+function addPageIndex(content) {
+    const pagingIndex = document.createElement(`p`)
+    pagingIndex.textContent = `Page ${requestedContentPage} / ${content.total_pages}`
+    pagingContainer.appendChild(pagingIndex)
+}
+
+function addPreviousButton(content) {
+    if (content.page > 1) {
+        const prevButton = document.createElement(`button`)
+        const prevIcon = document.createElement(`i`)
+        prevButton.classList = `prev-button`
+        prevIcon.classList = `fas fa-angle-left`
+        pagingContainer.appendChild(prevButton)
+        prevButton.appendChild(prevIcon)
+        addPagingEventListener(prevButton)
+    }
+}
+
+function addNextButton(content) {
+    if (content.page < content.total_pages) {
+        const nextButton = document.createElement(`button`)
+        const nextIcon = document.createElement(`i`)
+        nextButton.classList = `next-button`
+        nextIcon.classList = `fas fa-angle-right`
+        pagingContainer.appendChild(nextButton)
+        nextButton.appendChild(nextIcon)
+        addPagingEventListener(nextButton)
+    }
+}
+
+function addPagingEventListener(button) {
+    if (button.classList.contains(`prev-button`)) {
+        button.addEventListener(`click`, () => {
+            requestedContentPage--
+            refreshContentPage()
+        })
+    }
+    else if (button.classList.contains(`next-button`)) {
+        button.addEventListener(`click`, () => {
+            requestedContentPage++
+            refreshContentPage()
+        })
+    }
+}
+
+function addPagingElements(content) {
+    addPageIndex(content)
+    addPreviousButton(content)
+    addNextButton(content)
+}
+
+function getRequestedContent() {
     renderSearchResults()
-    // Add conditionnal eventListeners
-    refreshMenuEventListeners() 
+    refreshMenuEventListeners()
 }
 
 window.addEventListener('load', () => {
-    getRequestedContentType()
+    getRequestedContent()
 })
