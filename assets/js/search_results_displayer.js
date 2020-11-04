@@ -1,10 +1,9 @@
-const defaultListType = 'movie'
-let requestedContentType = defaultListType
+const defaultContentType = 'movie'
+let requestedContentType = defaultContentType
 
-const defaultResultsPage = 1
-let requestedContentPage = defaultResultsPage
+const defaultContentPage = 1
+let requestedContentPage = defaultContentPage
 
-let menuButtonElt
 let menuButtonContent
 
 const key = `9681493c16e2c16cba85aee9de76d451`
@@ -17,13 +16,10 @@ const menuItemsBlock = document.getElementsByClassName(`results-menu`)[0]
 const menuItems = menuItemsBlock.getElementsByTagName(`li`)
 const pagingContainer = document.getElementsByClassName(`paging-container`)[0]
 
-function renderSearchResults() {
+function renderResults() {
     fetch(`https://api.themoviedb.org/3/search/${requestedContentType}?api_key=${key}&language=${language}&query=${titleName}&page=${requestedContentPage}&include_adult=false`)
     .then(response => response.json())
     .then(content => {
-        console.log(`requête : https://api.themoviedb.org/3/search/${requestedContentType}?api_key=${key}&language=${language}&query=${titleName}&page=${requestedContentPage}&include_adult=false`)
-        console.log(`Il y a ${content.total_results} résultats pour cette requête`)
-        console.log(`Affichage de ${content.results.length} résultats`)
         switch(requestedContentType) {
             case 'movie':
                 let filteredMovieList = new FilteredMovieList(content.results)
@@ -40,50 +36,24 @@ function renderSearchResults() {
         }
         return content
     })
-    .then(content => addPagingElements(content))
+    .then(content => renderPaging(content))
     .catch(error => console.log(error))
 }
 
-// Refresh eventListeners on 'inactive' menu button
-function refreshMenuEventListeners() {
+function addTypeButtonsInteractions() {
     for (menuButtonElt of menuItems) {
         if (menuButtonElt.classList[1].includes(`inactive-`)) {
-            menuButtonElt.removeEventListener('click', refreshContentType)
-            menuButtonElt.addEventListener('click', refreshContentType)
+            menuButtonElt.addEventListener('click', editContentType)
         }
     }
 }
 
-// set all buttons to inactive and set only clicked button to active
-function resetMenuClasses(menuButtonElt, menuItems) {
-    for (menuButtonElt of menuItems) {
-        menuButtonElt.classList.replace('active-item', 'inactive-item')
-    }
-}
-
-// Refresh Page content
-function refreshContentType(clickedMenuButton) {
-    resetMenuClasses(menuButtonElt, menuItems)
-    clickedMenuButton.target.classList.replace('inactive-item', 'active-item')
-    // set the content type based on the clicked button
-    requestedContentType = clickedMenuButton.target.classList.value.split('-results')[0]
-    // set the content page on default
-    requestedContentPage = defaultResultsPage
-    refreshContentPage()
-}
-
-function refreshContentPage() {
+function renderPaging(content) {
     pagingContainer.innerHTML = ``
-    getRequestedContent()
-}
-
-function addPageIndex(content) {
     const pagingIndex = document.createElement(`p`)
-    pagingIndex.textContent = `Page ${requestedContentPage} / ${content.total_pages}`
+    pagingIndex.textContent = `Page ${content.page} / ${content.total_pages}`
     pagingContainer.appendChild(pagingIndex)
-}
 
-function addPreviousButton(content) {
     if (content.page > 1) {
         const prevButton = document.createElement(`button`)
         const prevIcon = document.createElement(`i`)
@@ -91,11 +61,9 @@ function addPreviousButton(content) {
         prevIcon.classList = `fas fa-angle-left`
         pagingContainer.appendChild(prevButton)
         prevButton.appendChild(prevIcon)
-        addPagingEventListener(prevButton)
+        addPagingButtonsInteractions(prevButton)
     }
-}
 
-function addNextButton(content) {
     if (content.page < content.total_pages) {
         const nextButton = document.createElement(`button`)
         const nextIcon = document.createElement(`i`)
@@ -103,36 +71,53 @@ function addNextButton(content) {
         nextIcon.classList = `fas fa-angle-right`
         pagingContainer.appendChild(nextButton)
         nextButton.appendChild(nextIcon)
-        addPagingEventListener(nextButton)
+        addPagingButtonsInteractions(nextButton)
     }
 }
 
-function addPagingEventListener(button) {
+function addPagingButtonsInteractions(button) {
     if (button.classList.contains(`prev-button`)) {
         button.addEventListener(`click`, () => {
             requestedContentPage--
-            refreshContentPage()
+            renderResults()
         })
     }
     else if (button.classList.contains(`next-button`)) {
         button.addEventListener(`click`, () => {
             requestedContentPage++
-            refreshContentPage()
+            renderResults()
         })
     }
 }
 
-function addPagingElements(content) {
-    addPageIndex(content)
-    addPreviousButton(content)
-    addNextButton(content)
+function initTypeEditing(clickedTypeButton) {
+    // Set the content type based on the clicked button class
+    requestedContentType = clickedTypeButton.classList.value.split('-results')[0]
+    // set the content index to the default value
+    requestedContentPage = defaultContentPage
+
+    for (let menuButtonElt of menuItems) {
+        if (menuButtonElt.classList[1].includes(`inactive-`)) {
+            menuButtonElt.removeEventListener('click', editContentType)
+        }
+        else {
+            menuButtonElt.classList.replace('active-item', 'inactive-item')
+        }
+    }
+    clickedTypeButton.classList.replace('inactive-item', 'active-item')
 }
 
-function getRequestedContent() {
-    renderSearchResults()
-    refreshMenuEventListeners()
+function initIndexEditing() {
+
+}
+
+function editContentType(clickEvent) {
+    initTypeEditing(clickEvent.target)
+    addTypeButtonsInteractions()
+    renderResults()
 }
 
 window.addEventListener('load', () => {
-    getRequestedContent()
+    addTypeButtonsInteractions()
+    renderResults()
 })

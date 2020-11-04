@@ -16,6 +16,13 @@ class FilteredMovieList extends FilteredContentList {
         const movieHeaderLength = this.renderMovieHeader(contentItem, movieInfoContainer)
         this.renderContentSynopsis(contentItem, movieInfoContainer, movieHeaderLength)
     }
+    
+    renderContentLink(contentItem, contentCard) {
+        const contentLink = document.createElement(`a`)
+        contentLink.href = `${this.movieDetailsBaseURL}${contentItem.id}`
+        contentCard.appendChild(contentLink)
+        return contentLink
+    }
 
     renderContentPoster(contentItem, moviePosterContainer) {
         if (`poster_path` in contentItem) {
@@ -61,7 +68,7 @@ class FilteredMovieList extends FilteredContentList {
         if (`overview` in contentItem) {
             const synopsisLength = contentItem.overview.length
 
-            if (synopsisLength > 1) {
+            if (synopsisLength > 1) {                
                 if ((headerLength + synopsisLength) <= this.showInfoMaxLength) {
                     movieOverview.textContent = contentItem.overview
                 }

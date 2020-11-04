@@ -30,6 +30,13 @@ class FilteredArtistList extends FilteredContentList {
         this.renderArtistContributions(contentItem, artistInfoContainer, artistMainDataLength)
     }
 
+    renderContentLink(contentItem, contentCard) {
+        const contentLink = document.createElement(`a`)
+        contentLink.href = `${this.artistDetailsBaseURL}${contentItem.id}`
+        contentCard.appendChild(contentLink)
+        return contentLink
+    }
+
     renderContentPoster(contentItem, artistPosterContainer) {
         if (`profile_path` in contentItem) {
 

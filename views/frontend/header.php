@@ -42,7 +42,9 @@ session_start();
 <body>
     <div id='wrapper'>
         <header>
-            <img src='./../../assets/images/icons/logo-serial-binger.png' alt='serial binger logo'/>
+            <a href='index.php'>
+                <img src='./../../assets/images/icons/logo-serial-binger.png' alt='serial binger logo'/>
+            </a>
             <form action='index.php?action=searchContent' method='post'>
                 <input type='text' placeholder='Recherche...' name='searched-content' required />
                 <button type='submit'><i class='fa fa-search'></i></button>
