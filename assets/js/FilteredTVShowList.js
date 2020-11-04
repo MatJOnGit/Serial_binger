@@ -17,6 +17,13 @@ class FilteredTVShowList extends FilteredContentList {
         this.renderContentSynopsis(contentItem, tvShowInfoContainer, tvShowHeaderLength)
     }
 
+    renderContentLink(contentItem, contentCard) {
+        const contentLink = document.createElement(`a`)
+        contentLink.href = `${this.tvShowDetailsBaseURL}${contentItem.id}`
+        contentCard.appendChild(contentLink)
+        return contentLink
+    }
+
     renderContentPoster(contentItem, tvShowPosterContainer) {
         if (`poster_path` in contentItem) {
             if (contentItem.poster_path != null) {

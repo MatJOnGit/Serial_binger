@@ -31,13 +31,6 @@ class FilteredContentList {
         return contentCard
     }
 
-    renderContentLink(contentItem, contentCard) {
-        const contentLink = document.createElement(`a`)
-        contentLink.href = `${this.contentDetailsBaseURL}${contentItem.id}`
-        contentCard.appendChild(contentLink)
-        return contentLink
-    }
-
     renderContentPosterContainer(contentLink) {
         const contentPosterContainer = document.createElement(`div`)
         contentPosterContainer.className =`poster-container`
