@@ -1,5 +1,3 @@
-        
-        </div>
         <footer>
             <ul>
                 <li><a href="#"><i class="fab fa-2x fa-twitter-square"></i></a></li>
