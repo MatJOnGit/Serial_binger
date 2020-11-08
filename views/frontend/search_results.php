@@ -1,5 +1,5 @@
-<div class='main-content'>
-    <div class='search-results'>
+<div class='content-block'>
+    <div class='main-content'>
     
         <h1>Résultats correspondant à : <span>'<?php echo $_GET['research']; ?>'</span></h1>
 

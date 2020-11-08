@@ -1,5 +1,4 @@
-<div class='show-block' id='<?php echo $_GET['type'] ?>'>
-
+<div class='main-content' id='<?php echo $_GET['type'] ?>'>
     <h1></h1>
 
     <section class='show-header'>    
@@ -7,17 +6,15 @@
     </section>
 
     <section class='show-user-actions'>
-        <div class='preshow-actions'>
-            <!-- classe no-trailer ou available-trailer suivant le cas. Le style sera à ajouter ... -->
-            <button class='play-trailer-button'>
-                <i class='fas fa-play'></i><p>Bande-annonce</p>
-            </button>
+        
+        <button class='play-trailer-button'>
+            <i class='fas fa-play'></i><p>Bande-annonce</p>
+        </button>
 
-            <button class='watchlist-button'>
-                <i class='fas fa-list'></i>
-                <p>Ajouter à ma liste</p>
-            </button>
-        </div>
+        <button class='watchlist-button'>
+            <i class='fas fa-list'></i>
+            <p>Ajouter à ma liste</p>
+        </button>
 
         <div class='trailer-player'>
         </div>
@@ -28,7 +25,10 @@
         </div>
 
         <!-- sur mobile, ce bouton fera pop un formulaire au milieu de l'écran -->
-        <button class='show-overview-button' id='<?php echo $_GET['id']; ?>'>Noter </button>
+        <button class='show-overview-button' id='<?php echo $_GET['id']; ?>'>
+            <i class='fas fa-list'></i>
+            <p>Noter</p>
+        </button>
     </section>
 
     <div class='splitter'>
