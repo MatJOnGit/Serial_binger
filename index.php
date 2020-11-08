@@ -1,40 +1,31 @@
 <?php
 
-    require './controller/FrontofficeController.php';
+    require 'views/frontoffice/header.php';
+
+    require 'controllers/FrontofficeController.php';
     $frontoffice_controller = new Frontoffice_Controller;
 
-    require 'views/frontend/header.php';
-
-    try
-    {
-        // views for landing page (unregistered)
+    try {
         if (!isset($_GET['action'])) {
-            $frontoffice_controller->displayUnregisteredLandingPage();
+            $frontoffice_controller->displayLandingPage();
         }
 
         elseif (isset($_GET['action'])) {
 
-            // views for show details page
             if ($_GET['action'] === 'getShowDetails' && isset($_GET['id']) && isset($_GET['type'])) {
-                $frontoffice_controller->displayShowDetailsTemplate();
+                $frontoffice_controller->displayShowDetails();
             }
 
-            // views for artist details page
             elseif ($_GET['action'] === 'getArtistDetails' && isset($_GET['id'])) {
-                require 'views/frontend/image_layer.php';
-                require 'views/frontend/artist_details.php';
+                $frontoffice_controller->displayArtistDetails();
             }
 
             elseif ($_GET['action'] === 'searchContent') {
-                require './controller/FrontendController.php';
-                $frontend_Controller = new Frontend_Controller;
-                $frontend_Controller->getContentSearch();
+                $frontoffice_controller->getContentSearch();
             }
 
             elseif ($_GET['action'] === 'getSearchResults') {
-                require './controller/FrontendController.php';
-                $frontend_Controller = new Frontend_Controller;
-                $frontend_Controller->displaySearchResults();
+                $frontoffice_controller->displaySearchResults();
             }
         }
     }
@@ -43,6 +34,6 @@
         echo 'Erreur : ' . $e->getMessage();
     }
 
-    require 'views/frontend/footer.php';
+    require 'views/frontoffice/footer.php';
 
 ?>
