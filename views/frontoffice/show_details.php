@@ -7,28 +7,43 @@
 
     <section class='show-user-actions'>
         
-        <button class='play-trailer-button'>
-            <i class='fas fa-play'></i><p>Bande-annonce</p>
-        </button>
+        <div class='show-buttons-container'>
 
-        <button class='watchlist-button'>
-            <i class='fas fa-list'></i>
-            <p>Ajouter à ma liste</p>
-        </button>
+            <!-- Changer play-trailer-button par trailer-button dans le JS -->
+            <button class='show-button trailer-button'>
+                <div class='show-button-text'>
+                    <p>Bande-annonce</p>
+                </div>
+                <div class='show-button-icon'>
+                <i class='fas fa-play'></i>
+                </div>
+            </button>
 
-        <div class='trailer-player'>
+            <button class='show-button'>
+                <div class='show-button-text'>
+                    <p>Ajouter à ma playlist</p>
+                </div>
+                <div class='show-button-icon'>
+                    <i class='fas fa-clipboard-list'></i>
+                </div>
+            </button>
         </div>
 
-        <div class='broadcaster-block'>
-            <p>Voir sur :</p>
+        <div class='trailer-player'></div>
+
+        <div class='show-buttons-container'>
             <button class='netflix-button'>Netflix</button>
-        </div>
 
-        <!-- sur mobile, ce bouton fera pop un formulaire au milieu de l'écran -->
-        <button class='show-overview-button' id='<?php echo $_GET['id']; ?>'>
-            <i class='fas fa-list'></i>
-            <p>Noter</p>
-        </button>
+            <!-- sur mobile, ce bouton fera pop un formulaire au milieu de l'écran -->
+            <button class='show-button overview-button' id='<?php echo $_GET['id']; ?>'>
+                <div class='show-button-text'>
+                    <p>Attribuer une note</p>
+                </div>
+                <div class='show-button-icon'>
+                    <i class="fas fa-star"></i>
+                </div>
+            </button>
+        </div>
     </section>
 
     <div class='splitter'>

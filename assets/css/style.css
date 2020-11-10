@@ -69,10 +69,6 @@ h5 {
     font-size: .9em;
 }
 
-button p {
-    font-size: .9em;
-}
-
 .paging-container button i {
     font-size: 1.5em;
 }
@@ -84,7 +80,7 @@ button p {
 footer p {
     font-size: .8em;
 }
- 
+
 button {
     background: none;
     color: inherit;
@@ -145,7 +141,7 @@ header input {
 
 .content-block {
     margin-top: 50px;
-    transition: all 0.5s ease;
+    transition: all .1s ease;
 }
 
 /* Image layer */
@@ -256,24 +252,87 @@ header input {
         text-decoration: none;
         cursor: pointer;
         margin: 10px auto 50px;
-        padding: 7px 15px;
-        border: 1px solid white;
-        background-color: hsla(333, 58%, 30%, 1);
-        border-radius: 8px;
-        box-shadow: 2px 2px black;
-    }
-
-    .fa-user-circle {
-        margin-right: 10px;
     }
 
     /*--------------*/
     /* show details */
     /*--------------*/
 
-    .show-user-actions > div,
-    .show-user-actions > button {
+    .show-user-actions {
+        width: 290px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .show-user-actions > div {
         margin-top: 15px;
+    }
+
+    .show-buttons-container {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .show-buttons-container button,
+    .registration-button {
+        width: 130px;
+        height: 40px;
+        border-radius: 20px;
+    }
+
+    .show-button,
+    .registration-button {
+        padding-left: 10px;
+        padding-right: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border: none;
+        color: white;
+        background: linear-gradient(
+            to right,
+            hsla(43, 98%, 48%, 1),
+            hsla(283, 87%, 31%, 1)
+        );
+        box-shadow: 1px 2px 2px grey;
+        margin-bottom: 20px;
+    }
+
+    .netflix-button {
+        color: red;
+        background-color: black;
+        box-shadow: 1px 2px 2px darkslategrey;
+    }
+
+    .show-button-text {
+        max-width: 70px;
+        height: 100%;
+        margin: auto 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.8em;
+    }
+
+    .show-button-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: hsla(0, 0%, 0%, 0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .available-trailer {
+        display: flex;
+    }
+
+    .unavailable-trailer {
+        display: none;
     }
 
     .trailer-player {
@@ -285,61 +344,6 @@ header input {
         width: 100%;
         height: 200px;
         border: none;
-    }
-
-    .show-user-actions {
-        max-width: 290px;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-
-    .show-user-actions button,
-    .show-overview-button {
-        padding: 8px;
-        border: 1px solid white;
-    }
-
-    .show-user-actions > button {
-        border-radius: 5px;
-        color: white;
-    }
-
-    .play-trailer-button {
-        background-color: hsla(333, 58%, 30%, 1);
-    }
-
-    .available-trailer {
-        display: block;
-    }
-
-    .unavailable-trailer {
-        display: none;
-    }
-
-    .watchlist-button,
-    .show-overview-button {
-        background-color: hsla(205, 54%, 51%, 1);
-    }
-
-    .show-overview-button {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .netflix-button {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-top: 10px;
-        background-color: black;
-        color: red;
     }
 
     h4 {
@@ -378,7 +382,7 @@ header input {
     .actor-card > div:first-child img,
     .actor-card > div:first-child a {
         border-radius: 8px;
-    } 
+    }
 
     .show-casting li img {
         width: 115px;
@@ -421,7 +425,7 @@ header input {
     /* search page */
     /*-------------*/
 
-    .results-menu {
+    .search-menu {
         width: 100%;
         height: 40px;
         margin-top: 50px;
@@ -431,27 +435,38 @@ header input {
         list-style: none;
     }
 
-    .results-menu li {
+    .search-menu li,
+    .prev-button,
+    .next-button {
+        padding: 0 5px;
+        cursor: pointer;
+        transition: all .1s ease-out;
+    }
+
+    .search-menu li {
         width: 27%;
         height: 100%;
-        border: 1px solid white;
-        padding: 0 5px;
         display: flex;
         justify-content: center;
         align-items: center;
-        cursor: pointer;
         border-radius: 50px;
-        box-shadow: 1px 2px 2px whitesmoke;
     }
 
-    .active-item {
-        background-color: white;
-        color: #000080;
-        box-shadow: 1px 2px 2px grey;
+    .active-search {
+        background: hsla(283, 87%, 31%, 1);
+        border: 1px solid black;
+        box-shadow: 0px 0px 14px white;
     }
 
-    .inactive-item {
-        background-color: hsla(232, 53%, 14%, 1);
+    .inactive-search,
+    .prev-button,
+    .next-button {
+        background: linear-gradient(
+            to right,
+            hsla(43, 98%, 48%, 1),
+            hsla(283, 87%, 31%, 1)
+        );
+        box-shadow: 1px 2px 2px black;
     }
 
     .search-results-list {
@@ -537,10 +552,7 @@ header input {
     .paging-container button {
         width: 45px;
         height: 45px;
-        background-color: white;
-        border: 1px solid white;
         border-radius: 50%;
-        box-shadow: 1px 2px 2px whitesmoke;
         position: absolute;
         align-self: center;
     }
@@ -551,10 +563,6 @@ header input {
 
     .next-button {
         right: 50px;
-    }
-
-    .paging-container button i {
-        color: #000080;
     }
 
 /* Footer */

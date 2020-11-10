@@ -36,7 +36,17 @@
 
     <div class='registration-box'>
         <p>Accédez gratuitement à nos fonctionnalités</p>
-        <a href='#'><i class='far fa-user-circle'></i>Créer un compte</a>
+
+        <a href='#' class='registration-button'>
+            <div class='show-button-text'>
+                <p>Créer un compte</p>
+            </div>
+            <div class='show-button-icon'>
+                <i class='far fa-user-circle'></i>
+            </div>
+        </a>
+
+
     </div>
 
     <script src='./../../assets/js/random_layer_generator.js'></script>

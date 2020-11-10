@@ -12,7 +12,7 @@ const language = `fr-FR`
 const titleElt = document.getElementsByTagName(`h1`)[0]
 const titleNameElt = titleElt.getElementsByTagName('span')[0].textContent
 const titleName = titleNameElt.substring(1, titleNameElt.length-1)
-const menuItemsBlock = document.getElementsByClassName(`results-menu`)[0]
+const menuItemsBlock = document.getElementsByClassName(`search-menu`)[0]
 const menuItems = menuItemsBlock.getElementsByTagName(`li`)
 const pagingContainer = document.getElementsByClassName(`paging-container`)[0]
 
@@ -92,7 +92,7 @@ function addPagingButtonsInteractions(button) {
 
 function initTypeEditing(clickedTypeButton) {
     // Set the content type based on the clicked button class
-    requestedContentType = clickedTypeButton.classList.value.split('-results')[0]
+    requestedContentType = clickedTypeButton.classList.value.split('-search')[0]
     // set the content index to the default value
     requestedContentPage = defaultContentPage
 
@@ -101,14 +101,10 @@ function initTypeEditing(clickedTypeButton) {
             menuButtonElt.removeEventListener('click', editContentType)
         }
         else {
-            menuButtonElt.classList.replace('active-item', 'inactive-item')
+            menuButtonElt.classList.replace('active-search', 'inactive-search')
         }
     }
-    clickedTypeButton.classList.replace('inactive-item', 'active-item')
-}
-
-function initIndexEditing() {
-
+    clickedTypeButton.classList.replace('inactive-search', 'active-search')
 }
 
 function editContentType(clickEvent) {

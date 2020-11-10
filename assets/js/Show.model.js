@@ -25,7 +25,7 @@ class Show {
         this._directorsTitle = document.getElementsByClassName(`show-directors-title`)[0]
         this._directorsText = document.getElementsByClassName(`show-directors-name`)[0]
 
-        this._trailerButton = document.getElementsByClassName(`play-trailer-button`)[0]
+        this._trailerButton = document.getElementsByClassName(`trailer-button`)[0]
 
         this._trailerContainer = document.getElementsByClassName(`trailer-player`)[0]
         this._trailerFrame = document.createElement(`iframe`)
@@ -109,8 +109,6 @@ class Show {
     editRatingButton(customText) {
         this.ratingButton.textContent += customText
     }
-
-    /*---------------- Trailer display ----------------*/
 
     tryRenderingTrailer() {
         if (this.showData.videos.results.length > 0){

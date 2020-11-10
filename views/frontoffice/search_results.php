@@ -3,10 +3,10 @@
     
         <h1>Résultats correspondant à : <span>'<?php echo $_GET['research']; ?>'</span></h1>
 
-        <ul class='results-menu'>
-            <li class='movie-results active-item'>Films</li>
-            <li class='tv-results inactive-item'>Séries</li>
-            <li class='person-results inactive-item'>Artistes</li>
+        <ul class='search-menu'>
+            <li class='movie-search active-search'>Films</li>
+            <li class='tv-search inactive-search'>Séries</li>
+            <li class='person-search inactive-search'>Artistes</li>
         </ul>
 
         <ul class='search-results-list'>

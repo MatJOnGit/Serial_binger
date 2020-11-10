@@ -1,5 +1,5 @@
 const show_type = document.getElementsByClassName('main-content')[0].id
-const show_id = document.getElementsByClassName('show-overview-button')[0].id
+const show_id = document.getElementsByClassName('overview-button')[0].id
 const key = `9681493c16e2c16cba85aee9de76d451`
 defaultResponseTongue = `fr-FR`
 backupResponseTongue = `us-US`
