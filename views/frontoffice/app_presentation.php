@@ -50,5 +50,10 @@
     </div>
 
     <script src='./../../assets/js/Layer.js'></script>
-    <script src='./../../assets/js/random_layer_generator.js'></script>
+    <script>
+        window.addEventListener('load', () => {
+            showLayer = new Layer('dynamic-layer')
+            showLayer.generateBackground()
+        })
+    </script>
 </div>
