@@ -9,7 +9,7 @@
         <h3>Un catalogue pratique</h3>
         <p>Grâce à Serial Binger, vous avez accès à la liste intégrale des programmes de Netflix et Prime Video en un clin d'oeil.</p>
     </section>
-        
+
     <div class='splitter'>
         <span class='splitter-underline'></span>
         <img src='./../../assets/images/icons/logo-serial-binger.png' class='transformed-logo' />
@@ -49,5 +49,6 @@
 
     </div>
 
+    <script src='./../../assets/js/Layer.js'></script>
     <script src='./../../assets/js/random_layer_generator.js'></script>
 </div>
