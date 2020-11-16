@@ -49,11 +49,12 @@
 
     </div>
 
-    <script src='./../../assets/js/Layer.js'></script>
+    <script src='./../../assets/js/Layer.model.js'></script>
+    <script src='./../../assets/js/DynamicLayer.js'></script>
     <script>
         window.addEventListener('load', () => {
-            showLayer = new Layer('dynamic-layer')
-            showLayer.generateBackground()
+            let dynamicLayer = new DynamicLayer()
+            dynamicLayer.requestPopularShows()
         })
     </script>
 </div>

@@ -1,17 +1,13 @@
 class Show {
     constructor(data) {
-
         /* Inherited elements */
         this._showData = data
-        this._showType = show_type
 
         /* Static values */
         this._backgroundBaseURL = `https://image.tmdb.org/t/p/w500`
         this._trailerBaseURL = `https://www.youtube.com/embed/`
 
         /* DOM elements */
-        this._layerContainer = document.getElementsByClassName(`show_layer`)[0]
-
         this._synopsisElt = document.getElementsByClassName(`show-synopsis`)[0]
         this._titleElt = document.getElementsByTagName(`h1`)[0]
 
@@ -20,7 +16,7 @@ class Show {
 
         this._genreText = document.getElementsByClassName(`show-genre-value`)[0]
 
-        this._ratingButton = document.getElementsByClassName(`show-overview-button`)[0]
+        this._ratingButton = document.getElementsByClassName(`overview-button`)[0]
 
         this._directorsTitle = document.getElementsByClassName(`show-directors-title`)[0]
         this._directorsText = document.getElementsByClassName(`show-directors-name`)[0]
@@ -39,7 +35,6 @@ class Show {
 
     get showData() { return this._showData }
 
-    get layerContainer() { return this._layerContainer }
     get backdropPath() { return this._backdropPath }
     get backgroundBaseURL() { return this._backgroundBaseURL }
 
@@ -64,10 +59,6 @@ class Show {
     get trailerContainer() { return this._trailerContainer }
     get trailerFrame() { return this._trailerFrame }
     get trailerBaseURL() { return this._trailerBaseURL }
-
-    renderLayer() {
-        this.layerContainer.style.backgroundImage = `url('${this.backgroundBaseURL}${this.backdropPath}')`
-    }
 
     renderTitle(title, releaseDate) {
         this.titleElt.textContent = `${title} (${releaseDate})`

@@ -36,7 +36,6 @@ class TVShow extends Show {
 
     renderContent() {
         console.log(`J'affiche le contenu de l'objet TVShow dans ma page`)
-        super.renderLayer()
         super.renderTitle(this.title, this.releaseDate)
         super.renderSynopsis()
         this.renderLength()

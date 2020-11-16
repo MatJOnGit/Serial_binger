@@ -1,4 +1,4 @@
-<div class='main-content' id='<?php echo $_GET['type'] ?>'>
+<div class='main-content' id='<?php echo $_GET['type'] . '-'. $_GET['id'] ?>'>
     <h1></h1>
 
     <section class='show-header'>    
@@ -8,8 +8,6 @@
     <section class='show-user-actions'>
         
         <div class='show-buttons-container'>
-
-            <!-- Changer play-trailer-button par trailer-button dans le JS -->
             <button class='show-button trailer-button'>
                 <div class='show-button-text'>
                     <p>Bande-annonce</p>
@@ -76,10 +74,14 @@
         </div>
     </section>
 
-    <script src='./../../assets/js/Slider.model.js'></script>
+    <script src='./../../assets/js/Layer.model.js'></script>
+
     <script src='./../../assets/js/Show.model.js'></script>
     <script src='./../../assets/js/Movie.model.js'></script>
     <script src='./../../assets/js/TVShow.model.js'></script>
-    
+
+    <script src='./../../assets/js/Slider.model.js'></script>
+
+    <script src='./../../assets/js/DetailsPageContent.js'></script>
     <script src='./../../assets/js/show_content_loader.js'></script>
 </div>
