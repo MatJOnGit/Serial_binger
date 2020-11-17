@@ -454,7 +454,7 @@ header input {
 
     .active-search {
         background: hsla(283, 87%, 31%, 1);
-        border: 1px solid black;
+        border: 1px solid white;
         box-shadow: 0px 0px 14px white;
     }
 

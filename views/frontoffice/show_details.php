@@ -83,5 +83,10 @@
     <script src='./../../assets/js/Slider.model.js'></script>
 
     <script src='./../../assets/js/DetailsPageContent.js'></script>
-    <script src='./../../assets/js/show_content_loader.js'></script>
+    <script>
+        window.addEventListener('load', () => {
+            let detailsPageContent = new DetailsPageContent()
+            detailsPageContent.requestSpecificContent()
+        })
+    </script>
 </div>
