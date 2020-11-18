@@ -3,7 +3,6 @@ class DynamicLayer extends Layer {
         super()
         this._showTypes = ['movie', 'tv']
         this._tmdbKey = `9681493c16e2c16cba85aee9de76d451`
-        this._defaultResponseTongue = `fr-FR`
 
         this._randomTypeValue = Math.floor(Math.random()*this.showTypes.length)
         this._randomShowType = this.showTypes[this.randomTypeValue]
@@ -13,19 +12,20 @@ class DynamicLayer extends Layer {
     }
 
     get showTypes() { return this._showTypes }
+    get tmdbKey() { return this._tmdbKey }
     get randomTypeValue() { return this._randomTypeValue }
     get randomShowType() { return this._randomShowType }
     get randomShowIndex() { return this._randomShowIndex }
-    get backdropPath() { return this._backdropPath}
     get displayedDynamicLayer() { return this._displayedDynamicLayer }
 
     set randomShowIndex(data) { this._randomShowIndex = data }
     set displayedDynamicLayer(data) { this._displayedDynamicLayer = data }
 
     requestPopularShows() {
-        fetch(`https://api.themoviedb.org/3/discover/${this.randomShowType}?api_key=${this.key}&language=${this.defaultResponseTongue}&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`)
+        fetch(`https://api.themoviedb.org/3/discover/${this.randomShowType}?api_key=${this.tmdbKey}&language=${super.defaultResponseTongue}&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`)
         .then(response => response.json())
         .then(content => {
+            console.log(content)
             this.initDynamicBackgroundRendering(content)
             return content
         })

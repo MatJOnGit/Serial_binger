@@ -62,7 +62,6 @@ class Movie extends Show {
 
     renderContent() {
         console.log(`J'affiche le contenu de l'objet Movie dans ma page`)
-        super.renderLayer()
         super.renderTitle(this.title, this.releaseDate)
         super.renderSynopsis()
         this.renderRuntime()

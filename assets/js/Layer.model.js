@@ -2,6 +2,8 @@ class Layer {
     constructor() {
         this._layerContainer = document.getElementsByClassName(`show_layer`)[0]
         this._backgroundBaseURL = `https://image.tmdb.org/t/p/w500`
+        this._defaultResponseTongue = `fr-FR`
+
         this._displayedStaticLayer
     }
 
@@ -27,6 +29,7 @@ class Layer {
     }
 
     renderBackground(backgroundPicture) {
+        console.log(backgroundPicture)
         this.layerContainer.style.backgroundImage = backgroundPicture
     }
 }

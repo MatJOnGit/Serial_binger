@@ -19,6 +19,11 @@
         <script src='./../../assets/js/FilteredMovieList.js'></script>
         <script src='./../../assets/js/FilteredTVShowList.js'></script>
         <script src='./../../assets/js/FilteredArtistList.js'></script>
-
-        <script src='./../../assets/js/search_results_displayer.js'></script>
+        <script src='./../../assets/js/ContentSearch.js'></script>
+        <script>
+            window.addEventListener('load', () => {
+                let contentSearch = new ContentSearch()
+                contentSearch.initSearch()
+            })
+        </script>
     </div>
