@@ -156,7 +156,7 @@ header input {
     width: 100%;
     height: 100%;
     background-size: cover;
-    background-position: center;
+    background-position: 50% 25%;
     transition: all 1s ease-out;
 }
 
@@ -420,6 +420,51 @@ header input {
     .actor-card p:last-child {
         margin-top: 5px;
     }
+
+    /*----------------*/
+    /* Artist details */
+    /*----------------*/
+
+    .artist-headers {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .artist-desc {
+        width: 110px;
+    }
+
+    .artist-desc p {
+        font-size: 0.9em;
+    }
+
+    .artist-name {
+        margin-bottom: 7px;
+    }
+
+    .artist-death {
+        margin-top: 7px;
+    }
+
+    .artist-picture {
+        width: 140px;
+        height: 200px;
+        background-size: cover;
+        border: 1px white solid;
+        border-radius: 7px;
+    }
+
+
+
+
+
+
+
+
+
 
     /*-------------*/
     /* search page */

@@ -1,5 +1,5 @@
 class Movie extends Show {
-    constructor (movieData) {
+    constructor(movieData) {
         super(movieData)
 
         /* Static values */

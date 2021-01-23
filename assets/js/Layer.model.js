@@ -13,23 +13,26 @@ class Layer {
 
     set displayedStaticLayer(data) { this._displayedStaticLayer = data }
 
-    initStaticBackgroundRendering(contentData) {
-        this.setStaticBackground(contentData)
+    initStaticBackgroundRendering(contentData, contentType) {
+        this.setStaticBackground(contentData, contentType)
         this.renderBackground(this.displayedStaticLayer)
     }
 
     // Set the url value of the layer background
-    setStaticBackground(contentData) {
-        if (contentData.backdrop_path !== null) {
-            this.displayedStaticLayer = `url('${this.backgroundBaseURL}${contentData.backdrop_path}')`
+    setStaticBackground(contentData, contentType) {
+        if ((contentType === 'tv') || (contentType === 'movie')) {
+            if (contentData.backdrop_path !== null) {
+                this.displayedStaticLayer = `url('${this.backgroundBaseURL}${contentData.backdrop_path}')`
+            }
         }
-        else {
-            // Include a case when there is no backdrop_path in the API response
+        else if (contentType === 'person') {
+            if (contentData.profile_path !== null) {
+                this.displayedStaticLayer = `url('${this.backgroundBaseURL}${contentData.profile_path}')`
+            }
         }
     }
 
     renderBackground(backgroundPicture) {
-        console.log(backgroundPicture)
         this.layerContainer.style.backgroundImage = backgroundPicture
     }
 }

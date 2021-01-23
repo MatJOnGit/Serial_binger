@@ -38,7 +38,7 @@ class ContentSearch {
     initSearch() {
         this.addTypeButtonsInteractions()
         this.addTypeButtonsInteractions()
-        this.renderResults()
+        this.requestSearchResults()
     }
 
     addTypeButtonsInteractions() {
@@ -52,13 +52,11 @@ class ContentSearch {
     editContentType(clickedEvent) {
         this.initTypeEditing(clickedEvent.target)
         this.addTypeButtonsInteractions()
-        this.renderResults()
+        this.requestSearchResults()
     }
 
     initTypeEditing(clickedTypeButton) {
-        // Set the content type based on the clicked button class
         this.requestedContentType = clickedTypeButton.classList.value.split('-search')[0]
-        // set the content index to the default value
         this.requestedContentPage = this.defaultContentPage
 
         for (let menuButtonElt of this.menuItems) {
@@ -72,28 +70,32 @@ class ContentSearch {
         clickedTypeButton.classList.replace('inactive-search', 'active-search')
     }
 
-    renderResults() {
+    requestSearchResults() {
         fetch(`https://api.themoviedb.org/3/search/${this.requestedContentType}?api_key=${this.tmdbKey}&language=${this.defaultResponseTongue}&query=${this.titleName}&page=${this.requestedContentPage}&include_adult=false`)
         .then(response => response.json())
         .then(content => {
-            switch(this.requestedContentType) {
-                case 'movie':
-                    let filteredMovieList = new FilteredMovieList(content.results)
-                    filteredMovieList.renderContentList()
-                    break
-                case 'tv':
-                    let filteredTVShowList = new FilteredTVShowList(content.results)
-                    filteredTVShowList.renderContentList()
-                    break
-                case 'person':
-                    let filteredArtistList = new FilteredArtistList(content.results)
-                    filteredArtistList.renderContentList()
-                    break
-            }
+            this.routeRequestResults(content)
             return content
         })
         .then(content => this.renderPaging(content))
         .catch(error => console.log(error))
+    }
+
+    routeRequestResults(content) {
+        switch(this.requestedContentType) {
+            case 'movie':
+                let filteredMovieList = new FilteredMovieList(content.results)
+                filteredMovieList.renderContentList()
+                break
+            case 'tv':
+                let filteredTVShowList = new FilteredTVShowList(content.results)
+                filteredTVShowList.renderContentList()
+                break
+            case 'person':
+                let filteredArtistList = new FilteredArtistList(content.results)
+                filteredArtistList.renderContentList()
+                break
+        }
     }
 
     renderPaging(content) {
@@ -127,13 +129,13 @@ class ContentSearch {
         if (button.classList.contains(`prev-button`)) {
             button.addEventListener(`click`, () => {
                 this.requestedContentPage--
-                this.renderResults()
+                this.requestSearchResults()
             })
         }
         else if (button.classList.contains(`next-button`)) {
             button.addEventListener(`click`, () => {
                 this.requestedContentPage++
-                this.renderResults()
+                this.requestSearchResults()
             })
         }
     }

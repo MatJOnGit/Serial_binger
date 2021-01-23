@@ -25,7 +25,6 @@ class DynamicLayer extends Layer {
         fetch(`https://api.themoviedb.org/3/discover/${this.randomShowType}?api_key=${this.tmdbKey}&language=${super.defaultResponseTongue}&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`)
         .then(response => response.json())
         .then(content => {
-            console.log(content)
             this.initDynamicBackgroundRendering(content)
             return content
         })

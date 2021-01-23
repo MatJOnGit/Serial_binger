@@ -35,14 +35,14 @@
 
         /* Renders an app presentation (the user is unknown) */
         public function displayWelcomePage() {
-            require 'views/frontoffice/image_layer.php';
-            require 'views/frontoffice/app_presentation.php';
+            require './views/frontoffice/image_layer.php';
+            require './views/frontoffice/app_presentation.php';
         }
 
         /* Renders show details for the id and type in url */
         public function displayShowDetails() {
-            require 'views/frontoffice/image_layer.php';
-            require 'views/frontoffice/show_details.php';
+            require './views/frontoffice/image_layer.php';
+            require './views/frontoffice/show_details.php';
         }
 
         /* Tests searched-content post data to avoid script injection */
@@ -62,8 +62,6 @@
 
         /* Renders artist details for the id in url */
         public function displayArtistDetails() {
-            // On affichera les vues nécessaires à l'affichage d'une page d'artiste
-            // require './views/frontoffice/image_layer.php';
-            // require './views/frontoffice/artist_details.php';
+            require './views/frontoffice/artist_details.php';
         }
     }

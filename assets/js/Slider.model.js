@@ -41,7 +41,7 @@ class Slider {
         actorLinkIcon.className = 'fas fa-link'
         actorRole.textContent = card.character
         actorName.textContent = card.name
-        actorLink.href = 'index.php?action=getActorDetails&id=' + card.id
+        actorLink.href = 'index.php?action=getArtistDetails&id=' + card.id
         actorLink.className = 'actor-link'
         
         this.list.appendChild(actorCard)
