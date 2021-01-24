@@ -30,7 +30,8 @@ class Artist {
         this.renderDeathData()
         this.renderArtistPicture()
         this.renderBiography()
-        this.renderMovieCredits()
+        this.renderMoviesContributions()
+        this.renderTVShowsContributions()
     }
 
     renderName() {
@@ -69,7 +70,13 @@ class Artist {
         }
     }
 
-    renderMovieCredits() {
-        
+    renderMoviesContributions() {
+        let moviesSlider = new MoviesSlider(this._artistData.movie_credits.cast)
+        moviesSlider.renderCards()
+    }
+
+    renderTVShowsContributions() {
+        let TVShowsSlider = new TvShowsSlider(this._artistData.tv_credits.cast)
+        TVShowsSlider.renderCards()
     }
 }

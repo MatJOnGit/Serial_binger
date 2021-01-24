@@ -25,6 +25,14 @@ class Slider {
         return this._list
     }
 
+    renderCards() {
+        this.casting.forEach((card, index) => {
+            if ((card.profile_path !== null) && (index < this.maxDisplayedCards)) {
+                this.renderCardsDetails(card)
+            }
+        })
+    }
+
     renderCardsDetails(card) {
         const actorCard = document.createElement('li')
         const actorImgContainer = document.createElement('div')
@@ -38,11 +46,11 @@ class Slider {
         actorCard.className = 'actor-card'
         actorImg.src = `https://image.tmdb.org/t/p/w500` + card.profile_path
         actorImg.alt = card.name
+        actorLink.href = 'index.php?action=getArtistDetails&id=' + card.id
+        actorLink.className = 'actor-link'
         actorLinkIcon.className = 'fas fa-link'
         actorRole.textContent = card.character
         actorName.textContent = card.name
-        actorLink.href = 'index.php?action=getArtistDetails&id=' + card.id
-        actorLink.className = 'actor-link'
         
         this.list.appendChild(actorCard)
         actorCard.appendChild(actorImgContainer)
@@ -52,13 +60,5 @@ class Slider {
         actorCard.appendChild(cardTextBox)
         cardTextBox.appendChild(actorRole)
         cardTextBox.appendChild(actorName)
-    }
-
-    renderCards() {
-        this.casting.forEach((card, index) => {
-            if ((card.profile_path !== null) && (index < this.maxDisplayedCards)) {
-                this.renderCardsDetails(card)
-            }
-        })
     }
 }

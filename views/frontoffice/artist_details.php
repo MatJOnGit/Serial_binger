@@ -13,19 +13,30 @@
             </div>
         </section>
 
-        <section>
+        <div class='biography-block'>
             <p class='artist-bio'></p>
-        </section>
+        </div>
 
-        <section class='movie-credits'>
-        </section>
+        <div class='splitter'>
+        <span class='splitter-underline'></span>
+        <img src='./../../assets/images/icons/logo-serial-binger.png' class='transformed-logo' />
+        <span class='splitter-underline'></span>
+    </div>
+
+        <div class='shows-credits'>
+            <h5>Films :</h5>
+            <ul class='movies-list'></ul>
+            <h5>Séries :</h5>
+            <ul class='tv-shows-list'></ul>
+        </div>
 
         <script src='./../../assets/js/Layer.model.js'></script>
 
         <script src='./../../assets/js/Show.model.js'></script>
         <script src='./../../assets/js/Artist.model.js'></script>
 
-        <script src='./../../assets/js/Slider.model.js'></script>
+        <script src='./../../assets/js/MoviesSlider.js'></script>
+        <script src='./../../assets/js/TvShowsSlider.js'></script>
 
         <script src='./../../assets/js/DetailsPageContent.js'></script>
         <script>

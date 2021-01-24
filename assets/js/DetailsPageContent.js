@@ -21,6 +21,7 @@ class DetailsPageContent {
     set contentId(data) { this._contentId = data }
 
     initContent() {
+        console.log('Ce contenu est une page de "' + this.contentType + '".')
         if (this.contentType === 'show') {
             this.contentType = this.contentReferences.split('-')[0]
             this.contentId = this.contentReferences.split('-')[1]
@@ -56,18 +57,14 @@ class DetailsPageContent {
 
     initContentDetailsRendering(contentData) {
         if (this.contentType === `movie`) {
-            console.log(`On va donc instancier un objet Movie`)
             let movie = new Movie(contentData)
             movie.renderContent()
         }
         else if (this.contentType === `tv`) {
-            console.log(`On va donc instancier un objet TVShow`)
             let tvShow = new TVShow(contentData)
             tvShow.renderContent()
         }
         else if (this.contentType === 'person') {
-            console.log(`On va donc instancier un objet Artist`)
-            console.log(`L'artiste à affiche se nomme : ${contentData.name} et son id est ${contentData.id}`)
             let artist = new Artist(contentData)
             artist.renderContent()
         }

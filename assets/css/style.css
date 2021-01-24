@@ -453,10 +453,78 @@ header input {
         width: 140px;
         height: 200px;
         background-size: cover;
-        border: 1px white solid;
         border-radius: 7px;
     }
 
+    .biography-block {
+        margin-bottom: 20px;
+    }
+
+    .movies-list,
+    .tv-shows-list {
+        margin: 20px 0 0;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+    .movie-card,
+    .tv-show-card {
+        list-style: none;
+        margin: 0 8px 0 0;
+    }
+
+    .movie-card > div:first-child,
+    .tv-show-card > div:first-child {
+        width: 115px;
+        position: relative;
+    }
+
+    .movie-card > div:first-child,
+    .movie-card > div:first-child img,
+    .movie-card > div:first-child a,
+    .tv-show-card > div:first-child,
+    .tv-show-card > div:first-child img,
+    .tv-show-card > div:first-child a {
+        border-radius: 8px;
+    }
+
+    .shows-credits li img {
+        width: 115px;
+    }
+
+    .movie-link,
+    .tv-show-link {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        display: flex;
+        text-decoration: none;
+        justify-content: flex-end;
+    }
+
+    .movie-card div:last-child,
+    .tvy-show-card div:last-child {
+        white-space: normal;
+    }
+
+    .movie-card p,
+    .movie-card a,
+    .tv-show-card p,
+    .tv-show-card a {
+        overflow-wrap: break-word;
+    }
+
+    .movie-card p:last-child,
+    .tv-show-card p:last-child,
+    .tv-show-card h5:last-child {
+        margin-top: 5px;
+        font-style: italic;
+    }
 
 
 
@@ -576,7 +644,7 @@ header input {
     }
 
     h5 {
-        margin: 0 3px 0 0;
+        margin: 8px 3px 0 0;
     }
 
     .paging-container {
